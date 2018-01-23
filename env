@@ -1,0 +1,5 @@
+DB_NAME=angular
+DB_USER=djangoangular
+DB_PASS=djangoAngularPassword
+DB_SERVICE=postgres
+DB_PORT=5432
