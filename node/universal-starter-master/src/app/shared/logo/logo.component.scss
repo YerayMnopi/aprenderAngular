@@ -1,0 +1,55 @@
+$primary-font: 'Syncopate', sans-serif;
+$hand-font: 'La Belle Aurore', cursive;
+$yellow: #FFE800;
+
+:host {
+  padding: 5px 5px 0 5px ;
+}
+
+.logo__container {
+  margin: 5px;
+  position: relative;
+  background-color: transparent;
+  border-radius: 2px;
+}
+
+.logo__container--inverse {
+  color: white;
+
+  & .logo__brackets {
+    color: $yellow;
+  }
+}
+
+.logo__A {
+  font-family: $primary-font;
+  font-weight: 700;
+  font-size: 39px;
+  position: relative;
+}
+
+.logo__prender {
+  font-family: $primary-font;
+  font-weight: 400;
+  position: absolute;
+  left: 33px;
+  top: 4px;
+}
+
+.logo__gular {
+  font-family: $primary-font;
+  font-weight: 700;
+  position: absolute;
+  left: 37px;
+  bottom: 6px;
+}
+
+.logo__brackets {
+  font-family: $hand-font;
+  color: darkblue;
+  font-size: 36px;
+  position: absolute;
+  left: 120px;
+  top: -31%;
+  transform: rotate(40deg);
+}

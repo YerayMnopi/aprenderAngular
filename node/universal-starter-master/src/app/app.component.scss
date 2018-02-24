@@ -1,0 +1,17 @@
+.app__header {
+  width: 100%;
+  background-color: transparent;
+  position: relative;
+  height: 89px;
+  margin-bottom: -89px;
+}
+
+.app__logo {
+  transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  /* text-align: center; */
+  /* right: 0; */
+  width: 14%;
+}

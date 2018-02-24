@@ -1,0 +1,67 @@
+$primary-font: 'Exo 2', sans-serif;
+$hand-font: 'La Belle Aurore', cursive;
+
+:host {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  &:hover {
+    .post-preview__text-container {
+      padding-bottom: 10px;
+      border-bottom: 3px solid darkblue;
+      border-bottom-right-radius: 2px;
+      border-bottom-left-radius: 2px;
+
+      .post-preview__title {
+        color: darkblue;
+      }
+
+    }
+  }
+}
+
+.post-preview__image-container {
+  width: 100%;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+  height: 200px;
+  margin-bottom: -40px;
+  z-index: -1;
+  border-radius: 2px;
+}
+.post-preview__text-container {
+  background-color: white;
+  width: 75%;
+  border-top-right-radius: 2px;
+  padding-bottom: 15px;
+  transition: border 0.2s ease;
+}
+.post-preview__title {
+  font-family: $primary-font;
+  font-weight: 800;
+  font-size: 18px;
+  transition: color 0.2s ease;
+  margin-bottom: 2px;
+}
+.post-preview__description {
+  font-family: $primary-font;
+  font-weight: 200;
+  font-size: 14px;
+}
+
+.post-preview__button {
+  background-color: darkblue;
+  color: white;
+  font-family: $primary-font;
+  font-weight: 700;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.post-preview__button-text {
+  transform: translateY(-50%);
+}

@@ -1,6 +1,6 @@
 FROM node:9.4-alpine
 
-COPY aprenderAngular/package.json aprenderAngular/package-lock.json ./
+COPY universal-starter-master/package.json ./
 
 RUN npm set progress=false && npm config set depth 0 && npm cache clean --force
 
@@ -9,9 +9,9 @@ RUN npm i && mkdir /ng-app && cp -R ./node_modules ./ng-app
 
 WORKDIR /ng-app
 
-COPY ./aprenderAngular .
+COPY ./universal-starter-master .
 
 ## Build the angular app in production mode and store the artifacts in dist folder
-RUN npm run build
+RUN npm run build:client-and-server-bundles && npm run webpack:server
 
-CMD ["node", "server.js"]
+CMD ["node", "dist/server"]

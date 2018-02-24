@@ -26,7 +26,7 @@ node:
   restart: always
   build: ./node/
   expose:
-    - "8080"
+    - "4000"
   links:
     - web:web
   #volumes:

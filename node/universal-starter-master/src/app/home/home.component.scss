@@ -1,0 +1,61 @@
+$primary-font: 'Exo 2', sans-serif;
+$hand-font: 'La Belle Aurore', cursive;
+$yellow: #FFE800;
+
+.home__heading {
+  width: 100%;
+  position: relative;
+  height: 100vh;
+  margin-bottom: 40px;
+  z-index: -1;
+  background-position: center center;
+  background-size: cover;
+  background-image: url("/assets/images/home-heading.jpg");
+  text-shadow: 3px 3px black;
+}
+
+.home__heading-text {
+  color: white;
+  font-family: $primary-font;
+  font-weight: 700;
+  font-size: 60px;
+  transform: translate(-50%, -50%);
+  top: 35%;
+  left: 50%;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.home__heading-bullet {
+  color: white;
+  font-family: $primary-font;
+  font-weight: 400;
+  font-size: 40px;
+  transform: translate(-50%, -50%);
+  top: 52%;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.home__heading-bullet--1 {
+  left: 35%;
+}
+
+.home__heading-bullet--2 {
+  left: 50%;
+}
+
+.home__heading-bullet--3 {
+  left: 65%;
+}
+
+.home__post-container {
+  margin-left: 4rem;
+  margin-bottom: 6rem;
+  display: inline-block;
+  width: 30%;
+}
+
+.home__post-container--right {
+  width: 50%;
+}

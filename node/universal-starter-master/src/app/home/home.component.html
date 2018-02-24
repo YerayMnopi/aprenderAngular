@@ -1,0 +1,22 @@
+<article>
+    <section class="home__heading">
+        <h1 class="home__heading-text">Dominar Angular nunca fue tan fácil</h1>
+        <span class="home__heading-bullet home__heading-bullet--1"></span>
+        <span class="home__heading-bullet home__heading-bullet--2">Directo al grano. Actualizado. Gratis.</span>
+        <span class="home__heading-bullet home__heading-bullet--3"></span>
+    </section>
+
+    <section class="home__list">
+        <div class="home__post-container"
+             *ngFor="let post of posts; let index = index"
+             [ngClass]="index % 2 ? 'home__post-container--right': ''"
+        >
+            <post-preview
+
+                [image]="post.image"
+                [title]="post.title"
+                [description]="post.description"
+            ></post-preview>
+        </div>
+    </section>
+</article>
