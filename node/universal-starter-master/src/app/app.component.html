@@ -1,5 +1,16 @@
 <header class="app__header">
     <logo class="app__logo" [color]="'inverse'"></logo>
 </header>
-<main><router-outlet></router-outlet></main>
-<footer>aprenderAngular by Yeray Díaz. Heading Photo by Blake Connally on Unsplash</footer>
+<main>
+    <router-outlet></router-outlet>
+</main>
+<footer class="app__footer">
+    <shared-section
+            [backgroundImage]="'light-grey.png'"
+            [repeatBackground]="true"
+    >
+        <logo></logo>
+        <span class="app__author">by Yeray Díaz.</span>
+        <p class="app__thanks-to">Heading Photo by Blake Connally on Unsplash</p>
+    </shared-section>
+</footer>

@@ -1,0 +1,39 @@
+// Fonts
+$primary-font: 'Exo 2', sans-serif;
+$hand-font: 'La Belle Aurore', cursive;
+$logo-font: 'Syncopate', sans-serif;
+
+// Colors
+$yellow: #FFE800;
+$lightGrey: #ABACB0;
+$dark-grey: #6B6A6D;
+$dark-olive-green: #6C9C54;
+$dark-kaki: #AD815A;
+$black: #262525;
+
+@mixin respond($breakpoint){
+  @if $breakpoint == small-phone {
+    @media (max-width: 21.875em) { @content };
+  }
+  @if $breakpoint == phone {
+    @media (max-width: 47.9375em) { @content };
+  }
+  @if $breakpoint == tablet-portrait {
+    @media (max-width: 61.875em) { @content };
+  }
+  @if $breakpoint == tablet-landscape {
+    @media (max-width: 74.9375em) { @content };
+  }
+  @if $breakpoint == desktop {
+    @media (max-width: 74.9375em) { @content };
+  }
+  @if $breakpoint == big-desktop {
+    @media (min-width: 75em) { @content };
+  }
+  @if $breakpoint == min-tablet-landscape {
+    @media (min-width: 61.876em) { @content };
+  }
+  @if $breakpoint == only-tablet-portrait {
+    @media (min-width: 47.9376em) and (max-width: 61.876em){ @content };
+  }
+}

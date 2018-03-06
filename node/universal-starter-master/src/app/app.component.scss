@@ -1,9 +1,12 @@
+@import '../sass/_vars';
+
 .app__header {
   width: 100%;
   background-color: transparent;
   position: relative;
   height: 89px;
   margin-bottom: -89px;
+  z-index: 1;
 }
 
 .app__logo {
@@ -11,7 +14,16 @@
   position: absolute;
   top: 50%;
   left: 20px;
-  /* text-align: center; */
-  /* right: 0; */
   width: 14%;
+}
+
+.app__author {
+  font-family: $primary-font;
+  font-weight: 400;
+}
+
+.app__thanks-to {
+  position: absolute;
+  right: 50px;
+  bottom: 20px;
 }

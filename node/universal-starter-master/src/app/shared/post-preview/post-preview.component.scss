@@ -1,5 +1,4 @@
-$primary-font: 'Exo 2', sans-serif;
-$hand-font: 'La Belle Aurore', cursive;
+@import '../../../sass/_vars';
 
 :host {
   position: relative;
@@ -43,6 +42,7 @@ $hand-font: 'La Belle Aurore', cursive;
   font-size: 18px;
   transition: color 0.2s ease;
   margin-bottom: 2px;
+  color: $black;
 }
 .post-preview__description {
   font-family: $primary-font;

@@ -1,0 +1,62 @@
+@import '../../../sass/_vars';
+
+.section__container {
+  width: 100%;
+  position: relative;
+  height: 100vh;
+  background-position: center center;
+  text-shadow: 3px 3px black;
+}
+
+.section__heading {
+  color: white;
+  font-family: $primary-font;
+  font-weight: 700;
+  font-size: 4.5rem;
+  transform: translate(-50%, -50%);
+  top: 35%;
+  left: 50%;
+  position: absolute;
+  width: 90%;
+  text-align: center;
+}
+
+.section__subheading {
+  color: white;
+  font-family: $primary-font;
+  font-weight: 400;
+  font-size: 3rem;
+  transform: translate(-50%, -50%);
+  top: 52%;
+  position: absolute;
+  left: 50%;
+  width: 90%;
+  text-align: center;
+}
+
+.section__button {
+  color: $yellow;
+  background-color: transparent;
+  border: 4px solid $yellow;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  top: 72%;
+  position: absolute;
+  white-space: nowrap;
+  left: 50%;
+  padding: 2rem;
+  border-radius: 2px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-shadow: 3px 3px black;
+  outline: none;
+  transition: all 0.3s ease-out;
+
+  &:hover {
+    color: darken($yellow, 15%);
+    border-color: darken($yellow, 15%);
+  }
+}

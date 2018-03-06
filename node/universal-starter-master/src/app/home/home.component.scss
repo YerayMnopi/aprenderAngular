@@ -1,61 +1,51 @@
-$primary-font: 'Exo 2', sans-serif;
-$hand-font: 'La Belle Aurore', cursive;
-$yellow: #FFE800;
+@import '../../sass/_vars';
 
-.home__heading {
-  width: 100%;
-  position: relative;
-  height: 100vh;
-  margin-bottom: 40px;
-  z-index: -1;
-  background-position: center center;
-  background-size: cover;
-  background-image: url("/assets/images/home-heading.jpg");
-  text-shadow: 3px 3px black;
+.home__description-bullet--1 {
+  left: 25%;
 }
 
-.home__heading-text {
-  color: white;
-  font-family: $primary-font;
-  font-weight: 700;
-  font-size: 60px;
-  transform: translate(-50%, -50%);
-  top: 35%;
+.home__description-bullet--2 {
   left: 50%;
-  position: absolute;
-  white-space: nowrap;
 }
 
-.home__heading-bullet {
-  color: white;
-  font-family: $primary-font;
+.home__description-bullet--3 {
+  left: 75%;
+}
+
+.home__level-heading {
   font-weight: 400;
-  font-size: 40px;
-  transform: translate(-50%, -50%);
-  top: 52%;
-  position: absolute;
-  white-space: nowrap;
 }
 
-.home__heading-bullet--1 {
-  left: 35%;
+.home__level-list {
+  list-style: none;
 }
 
-.home__heading-bullet--2 {
-  left: 50%;
-}
-
-.home__heading-bullet--3 {
-  left: 65%;
+.home__level-item {
+  font-weight: 400;
+  font-size: 2rem;
+  margin-left: 2rem;
 }
 
 .home__post-container {
   margin-left: 4rem;
-  margin-bottom: 6rem;
   display: inline-block;
   width: 30%;
+  height: 400px;
 }
 
 .home__post-container--right {
   width: 50%;
+}
+
+.home__list {
+  position: relative;
+  text-align: center;
+}
+
+.home__post-heading {
+  color: $black;
+  font-family: $primary-font;
+  font-weight: 700;
+  font-size: 4.5rem;
+  margin-bottom: 4rem;
 }

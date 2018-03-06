@@ -1,6 +1,5 @@
-$primary-font: 'Syncopate', sans-serif;
-$hand-font: 'La Belle Aurore', cursive;
-$yellow: #FFE800;
+@import '../../../sass/_vars';
+
 
 :host {
   padding: 5px 5px 0 5px ;
@@ -22,34 +21,37 @@ $yellow: #FFE800;
 }
 
 .logo__A {
-  font-family: $primary-font;
+  font-family: $logo-font;
   font-weight: 700;
-  font-size: 39px;
+  font-size: 3.3rem;
   position: relative;
+  bottom: 0;
 }
 
 .logo__prender {
-  font-family: $primary-font;
+  font-family: $logo-font;
   font-weight: 400;
   position: absolute;
-  left: 33px;
-  top: 4px;
+  left: 2.75rem;
+  top: 0.3rem;
+  font-size: 1.45rem;
 }
 
 .logo__gular {
-  font-family: $primary-font;
+  font-family: $logo-font;
   font-weight: 700;
   position: absolute;
-  left: 37px;
-  bottom: 6px;
+  left: 3.3rem;
+  bottom: .4rem;
+  font-size: 1.4rem;
 }
 
 .logo__brackets {
   font-family: $hand-font;
   color: darkblue;
-  font-size: 36px;
+  font-size: 3.2rem;
   position: absolute;
-  left: 120px;
+  left: 11rem;
   top: -31%;
   transform: rotate(40deg);
 }
