@@ -3,10 +3,11 @@
 .section__container {
   width: 100%;
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   background-position: center center;
-  text-shadow: 3px 3px black;
 }
+
+
 
 .section__heading {
   color: white;
@@ -19,6 +20,7 @@
   position: absolute;
   width: 90%;
   text-align: center;
+  text-shadow: 3px 3px black;
 }
 
 .section__subheading {
@@ -32,6 +34,7 @@
   left: 50%;
   width: 90%;
   text-align: center;
+  text-shadow: 3px 3px black;
 }
 
 .section__button {
@@ -54,6 +57,7 @@
   text-shadow: 3px 3px black;
   outline: none;
   transition: all 0.3s ease-out;
+  text-shadow: 3px 3px black;
 
   &:hover {
     color: darken($yellow, 15%);

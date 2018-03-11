@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnChanges, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'shared-section',
@@ -6,22 +6,24 @@ import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
   styleUrls: ['section.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SectionComponent implements OnInit {
+export class SectionComponent implements OnChanges {
 
   @Input() backgroundImage: string;
   @Input() repeatBackground = false;
   @Input() heading = '';
+  sectionStyle = {};
   @Input() subheading = '';
   @Input() buttonText = '';
   imageDirPath = '/assets/images/';
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnChanges() {
+    this.setBackground();
   }
 
   setBackground() {
-    return {
+    this.sectionStyle =  {
       'background-size': this.repeatBackground ? 'repeat' : 'cover',
       'background-image': 'url("' + this.getImagePath() + '")'
     }

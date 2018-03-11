@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+/* Services */
+import { PostsService } from '../core/posts.service';
+
+/* Models */
+import { Post } from "../shared/models/posts";
 
 @Component({
     selector: 'home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
-  posts = [
+  /*posts = [
       {
         image: 'wall.jpg',
         title: 'Destruye las 4 barreras de angular',
@@ -33,10 +39,24 @@ export class HomeComponent {
         title: 'No leas esto si ya sabes TODO sobre los servicios en angular',
         description: 'Si piensas que los servicios solo sirven para hacer peticiones http, estás tardando en leer esto.'
       }
-  ];
+  ];*/
 
-  constructor() {}
+  posts: Post[];
 
+  constructor(
+      private postService: PostsService
+  ) {}
 
+  ngOnInit() {
+      this.getPost();
+  }
 
+  getPost() {
+      this.postService.getPosts().subscribe(
+          (posts: Post[]) => this.posts = posts,
+          (error) => {
+              throw (new Error(error.message));
+          }
+      );
+  }
 }

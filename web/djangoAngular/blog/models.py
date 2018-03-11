@@ -11,9 +11,9 @@ class Post(UpdateableMixin):
     )
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250, unique_for_date='publish')
-    author = models.ForeignKey(User, related_name='blog_posts')
+    author = models.ForeignKey(User, related_name='posts')
     body = JSONField()
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='draft')
 
     class Meta:
         ordering = ('-publish',)
