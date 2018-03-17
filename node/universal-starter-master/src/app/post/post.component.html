@@ -1,0 +1,15 @@
+<shared-section
+    [backgroundImage]="post.image"
+    [heading]="post.title"
+    [subheading]="post.description"
+>
+    {{post.image_author}}
+</shared-section>
+<section class="content">
+    <div class="element" *ngFor="let postElement of post.body.body" [ngClass]="postElement.type">
+        <h2 class="heading">{{postElement.heading}}</h2>
+        <p *ngFor="let paragraph of postElement.content">
+            {{paragraph}}
+        </p>
+    </div>
+</section>

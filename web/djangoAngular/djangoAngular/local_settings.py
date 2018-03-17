@@ -10,3 +10,6 @@ DATABASES = {
         'PORT': '5432',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media/'

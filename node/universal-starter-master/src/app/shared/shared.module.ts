@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from "@angular/router";
 import { CommonModule } from '@angular/common';
 
 /* Components */
@@ -9,7 +10,8 @@ import { SectionComponent } from './section/section.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   declarations: [
     LogoComponent,

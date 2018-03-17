@@ -137,6 +137,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/data/web/djangoAngular/static/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/data/web/djangoAngular/media/'
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

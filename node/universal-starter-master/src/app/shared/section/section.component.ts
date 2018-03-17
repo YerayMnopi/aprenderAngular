@@ -14,6 +14,7 @@ export class SectionComponent implements OnChanges {
   sectionStyle = {};
   @Input() subheading = '';
   @Input() buttonText = '';
+  @Input() external = true;
   imageDirPath = '/assets/images/';
 
   constructor() { }
@@ -30,7 +31,7 @@ export class SectionComponent implements OnChanges {
   }
 
   getImagePath() {
-    return this.imageDirPath + this.backgroundImage;
+    return this.external ? this.backgroundImage : this.imageDirPath + this.backgroundImage;
   }
 
 }

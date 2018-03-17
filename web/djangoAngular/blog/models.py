@@ -10,9 +10,12 @@ class Post(UpdateableMixin):
         ('published', 'Published'),
     )
     title = models.CharField(max_length=250)
+    description = models.CharField(max_length=250)
+    image_author = models.CharField(max_length=250)
+    image = models.ImageField(upload_to='images')
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     author = models.ForeignKey(User, related_name='posts')
-    body = JSONField()
+    body = JSONField(default={"body": []})
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='draft')
 
     class Meta:
@@ -20,3 +23,4 @@ class Post(UpdateableMixin):
 
     def __str__(self):
         return self.title
+    

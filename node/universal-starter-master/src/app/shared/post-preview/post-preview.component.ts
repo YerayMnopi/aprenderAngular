@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'post-preview',
@@ -7,10 +8,13 @@ import { Component, Input } from '@angular/core';
 })
 export class PostPreviewComponent {
 
+    @Input() slug: string;
     @Input() image: string;
     @Input() title: string;
     @Input() description: string;
 
-    constructor() {}
+    constructor(
+        private router: Router
+    ) {}
 
 }

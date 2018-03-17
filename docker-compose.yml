@@ -26,7 +26,7 @@ node:
   restart: always
   build: ./node/
   expose:
-    - "4000"
+    - "8080"
   links:
     - web:web
   #volumes:
@@ -54,5 +54,5 @@ data:
   restart: always
   image: alpine
   volumes:
-    - /var/lib/postgresql
+    - ./db:/var/lib/postgresql/data
   command: "true"

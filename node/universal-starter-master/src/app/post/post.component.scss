@@ -1,0 +1,40 @@
+@import '../../sass/_vars';
+
+.content {
+  text-align: left;
+  width: 75%;
+  max-width: 50rem;
+  margin: 4rem auto;
+}
+
+.element {
+  padding: 1rem;
+  margin-bottom: 3rem;
+}
+
+.heading {
+  font-family: $primary-font;
+  font-weight: 800;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: $black;
+}
+
+.text {
+  font-family: $primary-font;
+  font-weight: 200;
+  font-size: 1.8rem;
+  & p {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.code {
+  font-family: $logo-font;
+  font-weight: 400;
+  font-size: 1rem;
+  background-color: lightgrey;
+  & p {
+    margin-bottom: .5rem;
+  }
+}

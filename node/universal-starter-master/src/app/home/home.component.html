@@ -1,6 +1,7 @@
 <article>
     <shared-section  class="home__heading"
         [backgroundImage]="'home-heading.jpg'"
+        [external]="false"
         [heading]="'Dominar Angular nunca fue tan fácil'"
         [subheading]="'Directo al grano. Actualizado. Gratis.'"
         [buttonText]="'Comenzar'"
@@ -45,7 +46,7 @@
              [ngClass]="index % 2 ? 'home__post-container--right': ''"
         >
             <post-preview
-
+                [slug]="post.slug"
                 [image]="post.image"
                 [title]="post.title"
                 [description]="post.description"
