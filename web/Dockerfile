@@ -7,8 +7,9 @@ COPY djangoAngular/requirements.txt /data/web/
 
 # Setup
 RUN apk update
-RUN apk upgrade
-RUN apk add --update python3 python3-dev postgresql-client postgresql-dev build-base gettext
+RUN apk add --update python3 python3-dev postgresql-client postgresql-dev build-base gettext jpeg-dev zlib-dev
+ENV LIBRARY_PATH=/lib:/usr/lib
+ENV PYTHONUNBUFFERED 1
 RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
