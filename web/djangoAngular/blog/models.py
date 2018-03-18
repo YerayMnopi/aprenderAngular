@@ -23,4 +23,3 @@ class Post(UpdateableMixin):
 
     def __str__(self):
         return self.title
-    
