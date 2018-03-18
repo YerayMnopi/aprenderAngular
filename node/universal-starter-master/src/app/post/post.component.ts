@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Meta, Title } from '@angular/platform-browser';
 
-/* Services */
-import { PostsService } from '../core/posts.service';
 
 /* Models */
 import { Post } from "../shared/models/posts";
@@ -17,15 +16,50 @@ export class PostComponent implements OnInit {
     post: Post;
 
     constructor(
-        private postService: PostsService,
-        private activatedRoute: ActivatedRoute
+        private activatedRoute: ActivatedRoute,
+        private titleService: Title,
+        private metaService: Meta,
     ) {}
 
     ngOnInit() {
         this.getPost();
+        this.setSeoTags();
     }
 
-    getPost() {
-        this.post = this.activatedRoute.snapshot.data.post;
+    private getPost() {
+        this.activatedRoute.data.subscribe(
+            (data) => this.post = data.post
+        );
+    }
+
+    private setSeoTags() {
+        const tags = [
+            {
+                name: 'description',
+                content: this.post.description
+            },
+            {
+                name: 'og:title',
+                content: this.post.title
+            },
+            {
+                name: 'og:description',
+                content: this.post.description
+            },
+            {
+                name: 'og:image',
+                content: this.post.image
+            },
+        ];
+        this.titleService.setTitle(this.post.title + ' | Aprender Angular');
+
+        for (let tag of tags) {
+            this.metaService.updateTag({
+                    content: tag.content
+                },
+                "property='" + tag.name +"'"
+            );
+        }
+
     }
 }
