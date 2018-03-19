@@ -12,6 +12,6 @@ WORKDIR /ng-app
 COPY ./universal-starter-master .
 
 ## Build the angular app in production mode and store the artifacts in dist folder
-RUN npm run build:client-and-server-bundles && npm run webpack:server
+RUN npm run build:prerender
 
 CMD ["node", "dist/server"]
