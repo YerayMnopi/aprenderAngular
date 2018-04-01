@@ -21,10 +21,7 @@ nginx:
   links:
     - web:web
     - node:node
-  networks:
-      default:
-          aliases:
-              - www.aprenderangular.com
+
 node:
   restart: always
   build: ./node/
@@ -32,7 +29,7 @@ node:
     - "8080"
   links:
     - web:web
-    - nginx:nginx
+    - nginx:www.aprenderangular.com
   #volumes:
   #  - ./node:/data/node
 
