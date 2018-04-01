@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { LocationStrategy } from "@angular/common";
+import {Component, OnInit, PLATFORM_ID, Inject} from '@angular/core';
+import { LocationStrategy, isPlatformBrowser, isPlatformServer } from "@angular/common";
 import { Router, NavigationEnd } from "@angular/router";
 
 @Component({
@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   constructor(
       private router: Router,
       private locationStrategy: LocationStrategy,
+      @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   ngOnInit() {
@@ -22,6 +23,10 @@ export class AppComponent implements OnInit {
 
 
   private scrollTopOnNavigation() {
+    if (isPlatformServer(this.platformId)) {
+      return;
+    }
+
     this.locationStrategy.onPopState(() => {
       this.isPopState = true;
     });

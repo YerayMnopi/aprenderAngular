@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -20,14 +20,13 @@ import { PostResolver } from './post/post.resolve';
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
+    BrowserTransferStateModule,
     HttpClientModule,
     CoreModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full'},
       { path: 'articulos/:slug', component: PostComponent, resolve: {post: PostResolver} },
-      { path: 'registro', component: SignUpComponent, pathMatch: 'full'},
-      { path: 'lazy', loadChildren: './lazy/lazy.module#LazyModule'},
-      { path: 'lazy/nested', loadChildren: './lazy/lazy.module#LazyModule'}
+      { path: 'registro', component: SignUpComponent, pathMatch: 'full'}
     ]),
     SharedModule
   ],
