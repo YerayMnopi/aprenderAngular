@@ -1,59 +1,83 @@
-web:
-  restart: always
-  build: ./web/
-  expose:
-    - "8000"
-  links:
-    - postgres:postgres
-    - redis:redis
-  env_file: env
-  volumes:
-    - ./web:/data/web
-  command: /usr/bin/gunicorn djangoAngular.wsgi:application -w 2 -b :8000
+version: "3.3"
 
-nginx:
-  restart: always
-  build: ./nginx/
-  ports:
-    - "80:80"
-  volumes_from:
-    - web
-  links:
-    - web:web
-    - node:node
+services:
 
-node:
-  restart: always
-  build: ./node/
-  expose:
-    - "8080"
-  links:
-    - web:web
-    - nginx:www.aprenderangular.com
-  #volumes:
-  #  - ./node:/data/node
+  node:
+    restart: always
+    build: ./node/
+    expose:
+      - "8080"
+    networks:
+      node-nginx:
+        aliases:
+          - express
+    depends_on:
+      - nginx
 
-postgres:
-  restart: always
-  image: postgres:latest
-  volumes_from:
-    - data
-  volumes:
-    - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-    - ./backups/postgresql:/backup
-  env_file: env
-  expose:
-    - "5432"
+  nginx:
+    restart: always
+    build: ./nginx/
+    ports:
+      - "80:80"
+    volumes:
+      - django:/data/web
+    networks:
+      node-nginx:
+        aliases:
+          - www.aprenderangular.com
+      django-nginx:
+    depends_on:
+      - web
 
-redis:
-  restart: always
-  image: redis:latest
-  expose:
-    - "6379"
+  web:
+    restart: always
+    build: ./web/
+    expose:
+      - "8000"
+    depends_on:
+      - postgres
+      - redis
+    env_file: env
+    volumes:
+      - django:/data/web
+    command: /usr/bin/gunicorn djangoAngular.wsgi:application -w 2 -b :8000
+    networks:
+      django-nginx:
+      django-postgres:
 
-data:
-  restart: always
-  image: alpine
-  volumes:
-    - ./db:/var/lib/postgresql/data
-  command: "true"
+  postgres:
+    restart: always
+    image: postgres:latest
+    volumes:
+      - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./backups/postgresql:/backup
+      - db:/var/lib/postgresql/data
+    env_file: env
+    expose:
+      - "5432"
+    networks:
+      django-postgres:
+
+  redis:
+    restart: always
+    image: redis:latest
+    expose:
+      - "6379"
+    networks:
+      django-postgres:
+
+  data:
+    restart: always
+    image: alpine
+    volumes:
+      - db:/var/lib/postgresql/data
+    command: "true"
+
+volumes:
+  db:
+  django:
+
+networks:
+  node-nginx:
+  django-nginx:
+  django-postgres:
