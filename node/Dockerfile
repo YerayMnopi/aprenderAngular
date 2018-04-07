@@ -12,6 +12,6 @@ WORKDIR /ng-app
 COPY ./universal-starter-master .
 
 ## Build the angular app in production mode and store the artifacts in dist folder
-RUN npm run build:ssr && npm run serve:ssr
+RUN npm run build:ssr
 
 CMD ["node", "dist/server"]
