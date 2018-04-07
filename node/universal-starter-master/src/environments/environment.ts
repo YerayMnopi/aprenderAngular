@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:8000/api/',
-  serverSideApiUrl: 'http://localhost/api/'
+  serverSideApiUrl: 'http://proxy/api/'
 };
