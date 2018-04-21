@@ -1,25 +1,101 @@
+import io, os
+from PIL import Image
+from django.core.files.base import ContentFile
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 from django.contrib.auth.models import User
-from djangoAngular.mixins import UpdateableMixin
+from djangoAngular.mixins import UpdateableMixin, SlugeableMixin
+from django.utils import timezone
 
 
-class Post(UpdateableMixin):
+class ResponsiveImage(UpdateableMixin, SlugeableMixin):
+    type = models.CharField(max_length=250, default=None, blank=True)
+    author = models.CharField(max_length=250, default=None, blank=True)
+    caption = models.CharField(max_length=100, default=None, blank=True)
+    alt = models.CharField(max_length=100, default=None, blank=True)
+    width = models.PositiveIntegerField(default=0)
+    height = models.PositiveIntegerField(default=0)
+    image = models.ImageField(
+        upload_to='images/',
+        blank=False,
+    )
+    thumbnail = models.ImageField(
+        upload_to='images/',
+        default=None,
+        blank=True
+    )
+
+    def save(self):
+        if not self.slug:
+            self.slug = self.get_unique_slug()
+
+        image = Image.open(io.BytesIO(self.image.read()))
+
+        self.remove_previous()
+
+        self.width, self.height = image.size
+        self.image.save(
+            name=self.rename(),
+            content=self.resize(image, max(self.width, self.height)),
+            save=False
+        )
+
+        self.thumbnail.save(
+            name=self.rename('-thumbnail'),
+            content=self.resize(image, 320),
+            save=False
+        )
+
+        super(ResponsiveImage, self).save()
+
+    def rename(self, extra_string=''):
+        return self.slug + extra_string + '.jpg'
+
+    def remove_previous(self):
+        if self.thumbnail.name and not self.image.name in self.thumbnail.name:
+            if os.path.isfile(self.thumbnail.path):
+                os.remove(self.thumbnail.path)
+                os.remove(self.thumbnail.path.replace('-thumbnail', ''))
+
+    def resize(self, image, edge):
+        content = io.BytesIO()
+        image.resize(self.scale(edge), Image.ANTIALIAS).save(fp=content, format='JPEG', dpi=[72, 72])
+        return ContentFile(content.getvalue())
+
+    def scale(self, long_edge):
+        if self.width > self.height:
+            ratio = long_edge * 1. / self.width
+        else:
+            ratio = long_edge * 1. / self.height
+        return int(self.width * ratio), int(self.height * ratio)
+
+    class Meta:
+        ordering = ('-created',)
+
+    def __str__(self):
+        return self.title
+
+
+class Post(UpdateableMixin, SlugeableMixin):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
         ('published', 'Published'),
     )
-    title = models.CharField(max_length=250)
     description = models.CharField(max_length=250)
-    image_author = models.CharField(max_length=250)
-    image = models.ImageField(upload_to='images')
-    slug = models.SlugField(max_length=250, unique_for_date='publish')
+    image = models.ForeignKey(ResponsiveImage, related_name='posts')
     author = models.ForeignKey(User, related_name='posts')
     body = JSONField(default={"body": []})
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='draft')
+    publish = models.DateTimeField(default=timezone.now)
 
     class Meta:
         ordering = ('-publish',)
 
     def __str__(self):
         return self.title
+
+    def save(self):
+        if not self.slug:
+            self.slug = self.get_unique_slug()
+
+        super(Post, self).save()

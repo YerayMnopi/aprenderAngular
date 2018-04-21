@@ -1,24 +1,21 @@
 from rest_framework import viewsets
 from django.contrib.auth.models import User
-from blog.serializers import PostSerializer, UserSerializer
-from blog.models import Post
+from blog.serializers import *
+from blog.models import *
 
 
-class UserViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    This viewset automatically provides `list` and `detail` actions.
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+class ResponsiveImageViewSet(viewsets.ModelViewSet):
+    queryset = ResponsiveImage.objects.all()
+    serializer_class = ResponsiveImageSerializer
+    lookup_field = 'slug'
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    """
-    This viewset automatically provides `list`, `create`, `retrieve`,
-    `update` and `destroy` actions.
-
-    Additionally we also provide an extra `highlight` action.
-    """
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     lookup_field = 'slug'
+
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

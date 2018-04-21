@@ -46,7 +46,22 @@ export class PostsService {
             {
                 name: 'og:image',
                 type: 'property',
-                content: post.image
+                content: post.image.image
+            },
+            {
+                name: 'og:image:type',
+                type: 'property',
+                content: 'image/jpeg'
+            },
+            {
+                name: 'og:image:width',
+                type: 'property',
+                content: post.image.width.toString()
+            },
+            {
+                name: 'og:image:height',
+                type: 'property',
+                content: post.image.height.toString()
             },
         ];
         this.titleService.setTitle(post.title + ' | Aprender Angular');

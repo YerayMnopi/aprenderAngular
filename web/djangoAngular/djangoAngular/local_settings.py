@@ -11,5 +11,5 @@ DATABASES = {
     }
 }
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/api/media/'
 MEDIA_ROOT = 'media/'

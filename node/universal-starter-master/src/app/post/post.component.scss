@@ -1,5 +1,9 @@
 @import '../../sass/_vars';
 
+:host {
+  display: block;
+}
+
 .content {
   text-align: left;
   width: 75%;

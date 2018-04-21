@@ -1,3 +1,4 @@
 backups
 db
 web/djangoAngular/media
+web/djangoAngular/media/images/*

@@ -1,5 +1,5 @@
 <shared-section
-    [backgroundImage]="post.image"
+    [backgroundImage]="post.image.image"
     [heading]="post.title"
     [subheading]="post.description"
 >
@@ -7,9 +7,14 @@
 </shared-section>
 <section class="content">
     <div class="element" *ngFor="let postElement of post.body.body" [ngClass]="postElement.type">
-        <h2 class="heading">{{postElement.heading}}</h2>
-        <p *ngFor="let paragraph of postElement.content">
-            {{paragraph}}
-        </p>
+        <ng-container *ngIf="postElement.type !== 'image'">
+            <h2 class="heading">{{postElement.heading}}</h2>
+            <p *ngFor="let paragraph of postElement.content">
+                {{paragraph}}
+            </p>
+        </ng-container>
+        <ng-container *ngIf="postElement.type === 'image'">
+            <shared-image [slug]="postElement.content"></shared-image>
+        </ng-container>
     </div>
 </section>
