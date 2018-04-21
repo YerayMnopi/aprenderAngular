@@ -23,9 +23,6 @@ services:
     networks:
       node-nginx:
       django-nginx:
-      default:
-        aliases:
-          - proxy
     depends_on:
       - web
       - node
