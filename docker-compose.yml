@@ -25,7 +25,7 @@ services:
       django-nginx:
       default:
         aliases:
-          - www.aprenderangular.com
+          - proxy
     depends_on:
       - web
       - node
