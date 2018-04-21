@@ -26,6 +26,7 @@ services:
       node-nginx:
         aliases:
           - proxy
+          - www.aprenderangular.com
       django-nginx:
     depends_on:
       - web
