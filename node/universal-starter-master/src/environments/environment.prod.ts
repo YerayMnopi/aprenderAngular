@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://www.aprenderAngular.com/api/',
-  serverSideApiUrl: 'http://www.aprenderAngular.com/api/'
+  apiUrl: 'http://www.aprenderangular.com/api/',
+  serverSideApiUrl: 'http://www.aprenderangular.com/api/'
 };

@@ -22,10 +22,10 @@ services:
       - django-static:/data/web/djangoAngular/static
     networks:
       node-nginx:
-        aliases:
-          - proxy
-          - www.aprenderangular.com
       django-nginx:
+      default:
+        aliases:
+          - www.aprenderangular.com
     depends_on:
       - web
       - node
