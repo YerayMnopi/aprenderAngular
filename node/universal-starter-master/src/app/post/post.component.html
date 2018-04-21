@@ -4,7 +4,6 @@
     [heading]="post.title"
     [subheading]="post.description"
 >
-    {{post.image_author}}
 </shared-section>
 <section class="content">
     <div class="element" *ngFor="let postElement of post.body.body" [ngClass]="postElement.type">
