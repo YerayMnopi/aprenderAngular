@@ -5,9 +5,8 @@
   position: relative;
   min-height: 95vh;
   background-position: center center;
+  background-size: cover;
 }
-
-
 
 .section__heading {
   color: white;
@@ -63,4 +62,11 @@
     color: darken($yellow, 15%);
     border-color: darken($yellow, 15%);
   }
+}
+
+.section__thanks-to {
+  font-family: $primary-font;
+  position: absolute;
+  right: 5rem;
+  bottom: 2rem;
 }

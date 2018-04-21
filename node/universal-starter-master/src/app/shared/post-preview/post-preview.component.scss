@@ -4,6 +4,9 @@
   position: relative;
   display: block;
   cursor: pointer;
+  &:focus {
+    outline: none;
+  }
   &:hover {
     .post-preview__text-container {
       padding-bottom: 10px;

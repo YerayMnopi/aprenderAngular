@@ -1,33 +1,62 @@
-import { Component, OnChanges, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, Inject, ViewChild, HostBinding, ElementRef, Renderer2, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from "@angular/common";
+import { environment } from '../../../environments/environment'
 
 @Component({
   selector: 'shared-section',
   templateUrl: './section.component.html',
   styleUrls: ['section.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SectionComponent implements OnChanges {
+export class SectionComponent implements OnInit{
 
   @Input() backgroundImage: string;
-  @Input() repeatBackground = false;
+  @Input() imageAuthor: string;
   @Input() heading = '';
   sectionStyle = {};
   @Input() subheading = '';
   @Input() buttonText = '';
   @Input() external = true;
   imageDirPath = '/assets/images/';
+  @ViewChild('background') background: ElementRef;
 
-  constructor() { }
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private renderer: Renderer2
+  ) {}
 
-  ngOnChanges() {
-    this.setBackground();
+  ngOnInit() {
+    this.setBackgroundImage();
   }
 
-  setBackground() {
-    this.sectionStyle =  {
-      'background-size': this.repeatBackground ? 'repeat' : 'cover',
-      'background-image': 'url("' + this.getImagePath() + '")'
+  setBackgroundImage() {
+    const sufix = this.getBackgroundImageSufix();
+    const type = '.jpg';
+    const apiUrl = environment.apiUrl + 'media/images/';
+
+    this.renderer.setStyle(
+      this.background.nativeElement,
+      'background-image',
+      'url(' + apiUrl + this.backgroundImage + sufix + type + ')'
+    );
+  }
+
+
+  getBackgroundImageSufix() {
+    if (isPlatformServer(this.platformId)) {
+      return '-desktop';
     }
+
+    const witdh = window.innerWidth;
+
+    if (witdh < 400) {
+      return '-tablet';
+    } else if (witdh < 1200) {
+      return '-desktop';
+    }
+    
+    return '';
   }
 
   getImagePath() {

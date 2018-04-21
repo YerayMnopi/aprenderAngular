@@ -1,6 +1,7 @@
-<section class="section__container" [ngStyle]="sectionStyle">
+<section class="section__container" #background>
   <h1 *ngIf="heading" class="section__heading">{{ heading }}</h1>
   <p *ngIf="subheading" class="section__subheading">{{ subheading }}</p>
   <ng-content class="section__content"></ng-content>
   <button *ngIf="buttonText" class="section__button">{{ buttonText }}</button>
+  <p class="section__thanks-to">Photo by {{ imageAuthor }} on Unsplash</p>
 </section>

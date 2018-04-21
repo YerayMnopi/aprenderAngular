@@ -24,6 +24,16 @@ class ResponsiveImage(UpdateableMixin, SlugeableMixin):
         default=None,
         blank=True
     )
+    tablet = models.ImageField(
+        upload_to='images/',
+        default=None,
+        blank=True
+    )
+    desktop = models.ImageField(
+        upload_to='images/',
+        default=None,
+        blank=True
+    )
 
     def save(self):
         if not self.slug:
@@ -42,7 +52,19 @@ class ResponsiveImage(UpdateableMixin, SlugeableMixin):
 
         self.thumbnail.save(
             name=self.rename('-thumbnail'),
-            content=self.resize(image, 320),
+            content=self.resize(image, 300, 192),
+            save=False
+        )
+
+        self.tablet.save(
+            name=self.rename('-tablet'),
+            content=self.resize(image, 700, 192),
+            save=False
+        )
+
+        self.desktop.save(
+            name=self.rename('-desktop'),
+            content=self.resize(image, 1200),
             save=False
         )
 
@@ -56,10 +78,12 @@ class ResponsiveImage(UpdateableMixin, SlugeableMixin):
             if os.path.isfile(self.thumbnail.path):
                 os.remove(self.thumbnail.path)
                 os.remove(self.thumbnail.path.replace('-thumbnail', ''))
+                os.remove(self.thumbnail.path.replace('-thumbnail', '-tablet'))
+                os.remove(self.thumbnail.path.replace('-thumbnail', '-desktop'))
 
-    def resize(self, image, edge):
+    def resize(self, image, edge, dpi=72):
         content = io.BytesIO()
-        image.resize(self.scale(edge), Image.ANTIALIAS).save(fp=content, format='JPEG', dpi=[72, 72])
+        image.resize(self.scale(edge), Image.ANTIALIAS).save(fp=content, format='JPEG', dpi=[dpi, dpi])
         return ContentFile(content.getvalue())
 
     def scale(self, long_edge):
