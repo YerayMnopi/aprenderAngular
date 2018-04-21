@@ -25,7 +25,7 @@ SECRET_KEY = 'jl0s5=!$&_!yxwp*j_6k^c@nsb2wo)ba@kuz-=c&n44z!gb=(j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'localhost:4200', 'localhost:4000' '127.0.0.1', 'aprenderangular.com', 'www.aprenderangular.com']
+ALLOWED_HOSTS = ['localhost', 'localhost:4200', 'localhost:4000' '127.0.0.1', 'aprenderangular.com', 'www.aprenderangular.com', 'proxy', 'express']
 
 
 # Application definition
