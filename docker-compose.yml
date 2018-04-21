@@ -11,8 +11,6 @@ services:
       node-nginx:
         aliases:
           - express
-    depends_on:
-      - nginx
 
   nginx:
     restart: always
@@ -30,6 +28,7 @@ services:
       django-nginx:
     depends_on:
       - web
+      - node
 
   web:
     restart: always
