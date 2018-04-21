@@ -20,7 +20,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - django:/data/web
+      - django-media:/data/web/djangoAngular/media
+      - django-static:/data/web/djangoAngular/static
     networks:
       node-nginx:
         aliases:
@@ -39,7 +40,8 @@ services:
       - redis
     env_file: env
     volumes:
-      - django:/data/web
+      - django-media:/data/web/djangoAngular/media
+      - django-static:/data/web/djangoAngular/static
     command: /usr/bin/gunicorn djangoAngular.wsgi:application -w 2 -b :8000
     networks:
       django-nginx:
@@ -75,7 +77,8 @@ services:
 
 volumes:
   db:
-  django:
+  django-media:
+  django-static:
 
 networks:
   node-nginx:
