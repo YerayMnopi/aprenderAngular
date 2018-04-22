@@ -10,7 +10,7 @@ import {Post} from "../shared/models/posts";
 @Injectable()
 export class PostsService {
 
-    postEndpoint = 'posts';
+    postEndpoint = 'posts/';
 
     constructor(
         private apiService: ApiService,
@@ -23,7 +23,7 @@ export class PostsService {
     }
 
     getPost(slug: string) {
-        return this.apiService.get(this.postEndpoint + '/' + slug);
+        return this.apiService.get(this.postEndpoint + slug + '/');
     }
 
     setSeoTags(post: Post) {

@@ -38,8 +38,10 @@
 .home__posts-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
-  grid-gap: 5rem;
+  grid-column-gap: 5rem;
+  grid-row-gap: 8rem;
   padding: 5rem;
+  margin-bottom: 10rem;
 }
 
 .home__post-heading {
