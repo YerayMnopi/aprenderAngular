@@ -50,9 +50,7 @@ export class SectionComponent implements OnInit{
 
     const witdh = window.innerWidth;
 
-    if (witdh <= 400) {
-      return '-thumbnail';
-    } else if (witdh <= 800) {
+    if (witdh <= 768) {
       return '-tablet';
     } else {
       return '-desktop';
