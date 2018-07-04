@@ -3,11 +3,14 @@ import { RouterModule } from "@angular/router";
 import { CommonModule } from '@angular/common';
 
 /* Components */
-import { LogoComponent } from './logo/logo.component';
-import { PostPreviewComponent } from './post-preview/post-preview.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { SectionComponent } from './section/section.component';
-import { ImageComponent } from './image/image.component';
+import { LogoComponent } from './components/logo/logo.component';
+import { PostPreviewComponent } from './components/post-preview/post-preview.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { SectionComponent } from './components/section/section.component';
+import { ImageComponent } from './components/image/image.component';
+
+/* Pipes */
+import { ParseMarkdownPipe } from './pipes/parse-markdown.pipe';
 
 @NgModule({
   imports: [
@@ -19,7 +22,8 @@ import { ImageComponent } from './image/image.component';
     PostPreviewComponent,
     SectionComponent,
     SignUpComponent,
-    ImageComponent
+    ImageComponent,
+    ParseMarkdownPipe
   ],
   exports: [
     CommonModule,
@@ -27,7 +31,8 @@ import { ImageComponent } from './image/image.component';
     PostPreviewComponent,
     SectionComponent,
     SignUpComponent,
-    ImageComponent
+    ImageComponent,
+    ParseMarkdownPipe
   ]
 })
 export class SharedModule { }

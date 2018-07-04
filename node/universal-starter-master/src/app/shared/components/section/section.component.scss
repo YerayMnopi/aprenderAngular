@@ -1,67 +1,72 @@
-@import '../../../sass/_vars';
+@import '../../../../sass/_vars';
 
-.home__heading {
+.section__container {
   width: 100%;
   position: relative;
-  height: 100vh;
+  min-height: 95vh;
   background-position: center center;
   background-size: cover;
-  background-image: url("/assets/images/jefferson-santos-450403-unsplash.jpg");
-  text-shadow: 3px 3px black;
 }
 
-.home__heading-text {
+.section__heading {
   color: white;
   font-family: $primary-font;
   font-weight: 700;
-  font-size: 60px;
+  font-size: 4.5rem;
   transform: translate(-50%, -50%);
   top: 35%;
   left: 50%;
   position: absolute;
-  white-space: nowrap;
+  width: 90%;
+  text-align: center;
+  text-shadow: 3px 3px black;
 }
 
-.home__heading-bullet {
+.section__subheading {
   color: white;
-  background-color: transparent;
-  border: none;
-  border-bottom: solid 1px white;
-  padding: 10px;
   font-family: $primary-font;
-  outline:none;
   font-weight: 400;
-  font-size: 40px;
+  font-size: 3rem;
   transform: translate(-50%, -50%);
-  top: 52%;
+  top: 60%;
   position: absolute;
-  white-space: nowrap;
   left: 50%;
+  width: 90%;
+  text-align: center;
+  text-shadow: 2px 2px black;
 }
 
-.home__start-button {
+.section__button {
   color: $yellow;
   background-color: transparent;
   border: 4px solid $yellow;
   font-family: "Exo 2", sans-serif;
   font-weight: 700;
-  font-size: 25px;
+  font-size: 2rem;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  top: 72%;
+  top: 80%;
   position: absolute;
   white-space: nowrap;
   left: 50%;
-  padding: 20px;
+  padding: 2rem;
   border-radius: 2px;
   letter-spacing: 2px;
   cursor: pointer;
   text-shadow: 3px 3px black;
   outline: none;
   transition: all 0.3s ease-out;
+  text-shadow: 3px 3px black;
 
   &:hover {
     color: darken($yellow, 15%);
     border-color: darken($yellow, 15%);
   }
+}
+
+.section__thanks-to {
+  font-family: $primary-font;
+  position: absolute;
+  right: 5rem;
+  bottom: 2rem;
 }

@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PostComponent } from './post/post.component';
-import { SignUpComponent } from './shared/sign-up/sign-up.component';
+import { SignUpComponent } from './shared/components/sign-up/sign-up.component';
 import { SharedModule } from "./shared/shared.module";
 import { CoreModule } from "./core/core.module";
 
