@@ -36,10 +36,10 @@
   background-color: white;
   width: 75%;
   border-top-right-radius: 2px;
-  padding-bottom: 15px;
   transition: border 0.2s ease;
-  position: absolute;
+  padding: 0rem 2rem;
 }
+
 .post-preview__title {
   font-family: $primary-font;
   font-weight: 800;
@@ -48,10 +48,15 @@
   margin-bottom: 2px;
   color: $black;
 }
+
 .post-preview__description {
   font-family: $primary-font;
   font-weight: 200;
   font-size: 14px;
+
+  @include respond(phone) {
+    display: none;
+  }
 }
 
 .post-preview__button {
