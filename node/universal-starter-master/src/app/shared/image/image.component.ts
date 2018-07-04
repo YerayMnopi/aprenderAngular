@@ -16,8 +16,8 @@ export class ImageComponent {
 
   sources = [
     {sufix: '-thumbnail', maxWidth: '400px'},
-    {sufix: '-tablet', maxWidth: '700px'},
-    {sufix: '-desktop', maxWidth: '1200px'},
+    {sufix: '-tablet', maxWidth: '800px'},
+    {sufix: '-desktop', maxWidth: '1400px'},
   ];
 
   @Input() slug: string;

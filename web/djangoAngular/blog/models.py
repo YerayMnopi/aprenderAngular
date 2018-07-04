@@ -52,19 +52,19 @@ class ResponsiveImage(UpdateableMixin, SlugeableMixin):
 
         self.thumbnail.save(
             name=self.rename('-thumbnail'),
-            content=self.resize(image, 300, 192),
+            content=self.resize(image, 800, 192),
             save=False
         )
 
         self.tablet.save(
             name=self.rename('-tablet'),
-            content=self.resize(image, 700, 192),
+            content=self.resize(image, 1600, 192),
             save=False
         )
 
         self.desktop.save(
             name=self.rename('-desktop'),
-            content=self.resize(image, 1200),
+            content=self.resize(image, 2800, 192),
             save=False
         )
 

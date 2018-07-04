@@ -50,13 +50,13 @@ export class SectionComponent implements OnInit{
 
     const witdh = window.innerWidth;
 
-    if (witdh < 400) {
+    if (witdh <= 400) {
+      return '-thumbnail';
+    } else if (witdh <= 800) {
       return '-tablet';
-    } else if (witdh < 1200) {
+    } else {
       return '-desktop';
     }
-    
-    return '';
   }
 
   getImagePath() {
