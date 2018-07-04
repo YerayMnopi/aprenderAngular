@@ -39,7 +39,7 @@ services:
     volumes:
       - django-media:/data/web/djangoAngular/media
       - django-static:/data/web/djangoAngular/static
-    command: /usr/bin/gunicorn --access-logfile djangoAngular.wsgi:application -w 2 -b :8000
+    command: /usr/bin/gunicorn djangoAngular.wsgi:application -w 2 -b :8000 --access-logfile -
     networks:
       django-nginx:
       django-postgres:
