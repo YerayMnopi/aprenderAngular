@@ -8,6 +8,8 @@
     >
     </shared-section>
 
+    <shared-post-list [posts]="posts"></shared-post-list>
+
     <!--<shared-section
         [backgroundImage]="'dark-grey.png'"
         [repeatBackground]="true"
@@ -39,16 +41,4 @@
         </div>
     </shared-section>-->
 
-    <section class="home__list">
-        <!-- <h2 class="home__post-heading">Últimas entradas del blog</h2> -->
-        <div class="home__posts-list">
-            <post-preview
-                *ngFor="let post of posts; let index = index"
-                [slug]="post.slug"
-                [image]="post.image.thumbnail"
-                [title]="post.title"
-                [description]="post.description"
-            ></post-preview>
-        </div>
-    </section>
 </article>

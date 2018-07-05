@@ -8,6 +8,8 @@ import { PostPreviewComponent } from './components/post-preview/post-preview.com
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SectionComponent } from './components/section/section.component';
 import { ImageComponent } from './components/image/image.component';
+import { PostListComponent } from './components/post-list/post-list.component';
+
 
 /* Pipes */
 import { ParseMarkdownPipe } from './pipes/parse-markdown.pipe';
@@ -23,6 +25,7 @@ import { ParseMarkdownPipe } from './pipes/parse-markdown.pipe';
     SectionComponent,
     SignUpComponent,
     ImageComponent,
+    PostListComponent,
     ParseMarkdownPipe
   ],
   exports: [
@@ -32,6 +35,7 @@ import { ParseMarkdownPipe } from './pipes/parse-markdown.pipe';
     SectionComponent,
     SignUpComponent,
     ImageComponent,
+    PostListComponent,
     ParseMarkdownPipe
   ]
 })

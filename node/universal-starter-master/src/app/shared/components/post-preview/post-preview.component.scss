@@ -3,23 +3,6 @@
 :host {
   position: relative;
   display: block;
-  cursor: pointer;
-  &:focus {
-    outline: none;
-  }
-  &:hover {
-    .post-preview__text-container {
-      padding-bottom: 10px;
-      border-bottom: 3px solid darkblue;
-      border-bottom-right-radius: 2px;
-      border-bottom-left-radius: 2px;
-
-      .post-preview__title {
-        color: darkblue;
-      }
-
-    }
-  }
 }
 
 .post-preview__image-container {
@@ -29,8 +12,20 @@
   position: relative;
   height: 200px;
   margin-bottom: -40px;
-  z-index: -1;
   border-radius: 2px;
+
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    .post-preview__title {
+      color: darkblue;
+      font-size: 24px;
+    }
+  }
 }
 .post-preview__text-container {
   background-color: white;
@@ -38,6 +33,9 @@
   border-top-right-radius: 2px;
   transition: border 0.2s ease;
   padding: 0rem 2rem;
+  position: absolute;
+  bottom: 0;
+  transition: all 0.3s ease-out;
 }
 
 .post-preview__title {
@@ -47,6 +45,7 @@
   transition: color 0.2s ease;
   margin-bottom: 2px;
   color: $black;
+  transition: all 0.3s ease-out;
 }
 
 .post-preview__description {
@@ -57,20 +56,4 @@
   @include respond(phone) {
     display: none;
   }
-}
-
-.post-preview__button {
-  background-color: darkblue;
-  color: white;
-  font-family: $primary-font;
-  font-weight: 700;
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-.post-preview__button-text {
-  transform: translateY(-50%);
 }

@@ -1,0 +1,16 @@
+.posts-list__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  grid-column-gap: 5rem;
+  grid-row-gap: 8rem;
+  padding: 2rem;
+  margin-bottom: 10rem;
+}
+
+/*.home__post-heading {
+  color: $black;
+  font-family: $primary-font;
+  font-weight: 700;
+  font-size: 4.5rem;
+  margin-top: 4rem;
+}*/
