@@ -2,7 +2,7 @@
   <!-- <h2 class="home__post-heading">Últimas entradas del blog</h2> -->
   <post-preview
       *ngFor="let post of posts; let index = index"
-      [slug]="post.slug"
+      [url]="urlPrefix + '/' + post.slug"
       [image]="post.image.thumbnail"
       [title]="post.title"
       [description]="post.description"

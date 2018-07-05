@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 // Components
 import { HomeComponent } from './home/home.component';
 import { PostComponent } from './post/post.component';
-import { PostResolver } from './post/post.resolve';
+import { PostResolver } from '../core/post.resolve';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'},

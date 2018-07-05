@@ -1,2 +1,36 @@
-<h1>Administrador</h1>
-<shared-post-list [posts]="posts"></shared-post-list>
+<shared-section
+    [backgroundImage]="post.image.slug"
+    [imageAuthor]="post.image.author"
+    [heading]="post.title"
+    [subheading]="post.description"
+>
+</shared-section>
+
+<article class="content">
+    <div class="element" *ngFor="let postElement of post.body.body; index as elementIndex; trackBy: trackByFn" [ngClass]="postElement.type">
+        <ng-container *ngIf="postElement.type === 'text'">
+            <h2 class="heading">{{postElement.heading}}</h2>
+            <input type="text" [(ngModel)]="postElement.heading">
+
+            <ng-container *ngFor="let paragraph of postElement.content; index as paragraphIndex; trackBy: trackByFn">
+                <p [innerHTML]="paragraph | parseMarkdown"></p>
+                <textarea class="edit-post__text-area"
+                    [(ngModel)]="post.body.body[elementIndex].content[paragraphIndex]">
+                </textarea>
+            </ng-container>
+
+        </ng-container>
+        <ng-container *ngIf="postElement.type === 'code'">
+            <h2 class="heading">{{postElement.heading}}</h2>
+            <p *ngFor="let paragraph of postElement.content">
+                {{paragraph}}
+            </p>
+        </ng-container>
+        <ng-container *ngIf="postElement.type === 'image'">
+            <shared-image [slug]="postElement.content"></shared-image>
+        </ng-container>
+    </div>
+    <section>
+        <button (click)="addTextElement()">Añadir bloque de texto</button>
+    </section>
+</article>

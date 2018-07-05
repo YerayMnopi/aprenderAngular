@@ -6,7 +6,6 @@ import { PublicRoutingModule } from './public-routing.module';
 // Components
 import { HomeComponent } from './home/home.component';
 import { PostComponent } from './post/post.component';
-import { PostResolver } from './post/post.resolve';
 
 @NgModule({
   imports: [
@@ -16,9 +15,6 @@ import { PostResolver } from './post/post.resolve';
   declarations: [
     HomeComponent,
     PostComponent,
-  ],
-  providers: [
-    PostResolver
   ]
 })
 export class PublicModule {}

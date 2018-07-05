@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class PostPreviewComponent {
 
-    @Input() slug: string;
+    @Input() url: string;
     @Input() image: string;
     @Input() title: string;
     @Input() description: string;
@@ -16,5 +16,9 @@ export class PostPreviewComponent {
     constructor(
         private router: Router
     ) {}
+
+    navigate() {
+        this.router.navigateByUrl(this.url);
+    }
 
 }

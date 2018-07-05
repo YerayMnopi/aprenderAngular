@@ -1,5 +1,5 @@
 <div class="post-preview__image-container"
-    [routerLink]="['/articulos', slug]"
+    (click)="navigate()"
     [ngStyle]="{ 'background-image': 'url(' + image + ')' }">
         <div class="post-preview__text-container" >
             <h4 class="post-preview__title">{{ title }}</h4>

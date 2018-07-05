@@ -12,5 +12,7 @@ export class PostListComponent {
 
   @Input() posts: Post[];
 
+  @Input() urlPrefix = '/articulos';
+
   constructor() {}
 }

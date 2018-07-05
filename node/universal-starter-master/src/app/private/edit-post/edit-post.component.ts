@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-
-/* Services */
-import { PostsService } from '../../core/posts.service';
+import { ActivatedRoute } from '@angular/router';
 
 /* Models */
 import { Post } from "../../shared/models/posts";
+
+/* Services */
+import { PostsService } from '../../core/posts.service';
 
 @Component({
   selector: 'private-edit-component',
@@ -12,23 +13,39 @@ import { Post } from "../../shared/models/posts";
   styleUrls: ['./edit-post.component.scss']
 })
 export class EditPostComponent implements OnInit {
+  post: Post;
 
-  constructor (
-    private postService: PostsService
+  constructor(
+      private activatedRoute: ActivatedRoute,
+      private postsService: PostsService
   ) {}
 
-  posts: Post[];
-
   ngOnInit() {
-    this.getPost();
+      this.getPost();
   }
 
-  getPost() {
-    this.postService.getPosts().subscribe(
-      (posts: Post[]) => this.posts = posts,
-      (error) => {
-        throw (new Error(error.message));
-      }
-    );
+  editParagraph(elementIndex: number, paragraphIndex: number) {
+    console.log(elementIndex + ' - ' + paragraphIndex);
+    console.log(this.post.body.body[elementIndex][paragraphIndex]);
+  }
+
+  trackByFn(index: any, item: any) {
+    return index;
+  }
+
+  addTextElement() {
+      this.post.body.body.push({
+          type: 'text',
+          heading: 'Nuevo bloque de texto',
+          content: ['Escribe aquí']
+      });
+  }
+
+  private getPost() {
+      this.activatedRoute.data.subscribe(
+          (data) => {
+              this.post = data.post;
+          }
+      );
   }
 }
