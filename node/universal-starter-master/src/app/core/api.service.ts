@@ -20,6 +20,10 @@ export class ApiService {
         return this.httpClient.get(this.apiUrl + endpoint);
     }
 
+    put(endpoint: string, body: any) {
+        return this.httpClient.put(this.apiUrl + endpoint, body);
+    }
+
     private getApiUrl() {
         if (isPlatformServer(this.platformId)) {
             this.apiUrl = environment.serverSideApiUrl;

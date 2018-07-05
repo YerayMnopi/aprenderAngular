@@ -41,6 +41,12 @@ export class EditPostComponent implements OnInit {
       });
   }
 
+  savePost() {
+      this.postsService.savePost(this.post).subscribe(
+          (response) => console.log(response)
+      );
+  }
+
   private getPost() {
       this.activatedRoute.data.subscribe(
           (data) => {

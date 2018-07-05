@@ -26,6 +26,10 @@ export class PostsService {
         return this.apiService.get(this.postEndpoint + slug + '/');
     }
 
+    savePost(postToSave: Post) {
+        return this.apiService.put(this.postEndpoint + postToSave.slug + '/', postToSave);
+    }
+
     setSeoTags(post: Post) {
         const tags = [
             {
