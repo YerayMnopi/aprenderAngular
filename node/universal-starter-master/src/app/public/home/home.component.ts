@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 /* Services */
-import { PostsService } from '../core/posts.service';
+import { PostsService } from '../../core/posts.service';
 
 /* Models */
-import { Post } from "../shared/models/posts";
+import { Post } from "../../shared/models/posts";
 
 @Component({
   selector: 'home',

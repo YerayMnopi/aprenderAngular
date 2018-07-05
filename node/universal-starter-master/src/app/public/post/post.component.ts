@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 /* Models */
-import { Post } from "../shared/models/posts";
+import { Post } from "../../shared/models/posts";
 
 /* Services */
-import { PostsService } from '../core/posts.service';
+import { PostsService } from '../../core/posts.service';
 
 @Component({
     selector: 'post',

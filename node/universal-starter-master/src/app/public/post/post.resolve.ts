@@ -3,10 +3,10 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from "@angular/r
 import {Observable} from "rxjs";
 
 /* Services */
-import { PostsService } from '../core/posts.service';
+import { PostsService } from '../../core/posts.service';
 
 /* Models */
-import { Post } from "../shared/models/posts";
+import { Post } from "../../shared/models/posts";
 
 @Injectable()
 export class PostResolver implements Resolve<Post> {
