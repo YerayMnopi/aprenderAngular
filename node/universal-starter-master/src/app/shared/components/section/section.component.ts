@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation, Inject, ViewChild, HostBinding, ElementRef, Renderer2, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation, Inject, ViewChild, HostBinding, ElementRef, Renderer2, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
 import { isPlatformBrowser, isPlatformServer } from "@angular/common";
 import { environment } from '../../../../environments/environment'
 
@@ -18,6 +18,7 @@ export class SectionComponent implements OnInit{
   @Input() subheading = '';
   @Input() buttonText = '';
   @Input() external = true;
+  @Output() buttonClicked = new EventEmitter<void>();
   imageDirPath = '/assets/images/';
   @ViewChild('background') background: ElementRef;
 
@@ -28,6 +29,10 @@ export class SectionComponent implements OnInit{
 
   ngOnInit() {
     this.setBackgroundImage();
+  }
+
+  emitButtonClicked() {
+    this.buttonClicked.emit();
   }
 
   setBackgroundImage() {

@@ -42,7 +42,7 @@ export class EditPostComponent implements OnInit {
   }
 
   savePost() {
-      this.postsService.savePost(this.post).subscribe(
+      this.postsService.savePostExceptImage(this.post).subscribe(
           (response) => console.log(response)
       );
   }

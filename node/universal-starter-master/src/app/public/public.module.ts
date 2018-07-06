@@ -6,6 +6,7 @@ import { PublicRoutingModule } from './public-routing.module';
 // Components
 import { HomeComponent } from './home/home.component';
 import { PostComponent } from './post/post.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { PostComponent } from './post/post.component';
   declarations: [
     HomeComponent,
     PostComponent,
+    SignUpComponent
   ]
 })
 export class PublicModule {}

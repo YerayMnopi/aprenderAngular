@@ -26,8 +26,10 @@ export class PostsService {
         return this.apiService.get(this.postEndpoint + slug + '/');
     }
 
-    savePost(postToSave: Post) {
-        return this.apiService.put(this.postEndpoint + postToSave.slug + '/', postToSave);
+    savePostExceptImage(postToSave: Post) {
+        const postWithoutImage = JSON.parse(JSON.stringify(postToSave));
+        delete postWithoutImage.image;
+        return this.apiService.patch(this.postEndpoint + postToSave.slug + '/', postWithoutImage);
     }
 
     setSeoTags(post: Post) {
