@@ -53,7 +53,7 @@ export class UserService {
 
   verify(): Observable<boolean> {
     if (this.user.token) {
-      return this.apiService.post(this.endPoint + 'verify/', {token: this.user.token})
+      return this.apiService.post('token-verify/', {token: this.user.token})
       .map(
         (response: {token: string}) => !!(response && response.token)
       );
