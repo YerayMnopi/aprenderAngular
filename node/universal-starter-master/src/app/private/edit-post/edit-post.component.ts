@@ -70,7 +70,7 @@ export class EditPostComponent implements OnInit {
       );
   }
 
-  toggleEditMode(elementIndex: number, subelement?: string,  paragraphIndex?: number) {
+  toggleEditMode(elementIndex: number | string, subelement?: string,  paragraphIndex?: number) {
       if (this.checkEditMode(elementIndex, subelement, paragraphIndex)) {
         this.editMode = '';
       } else {
@@ -81,7 +81,7 @@ export class EditPostComponent implements OnInit {
       }
   }
 
-  checkEditMode(elementIndex: number, subelement?: string,  paragraphIndex?: number) {
+  checkEditMode(elementIndex: number | string, subelement?: string,  paragraphIndex?: number) {
     return this.editMode === (elementIndex + subelement + paragraphIndex);
   }
 
