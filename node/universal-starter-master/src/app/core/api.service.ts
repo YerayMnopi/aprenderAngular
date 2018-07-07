@@ -23,7 +23,7 @@ export class ApiService {
     }
 
     get(endpoint: string) {
-        return this.httpClient.get(this.apiUrl + endpoint, this.requestOptions);
+        return this.httpClient.get(this.apiUrl + endpoint);
     }
 
     post(endpoint: string, body: Object) {
@@ -40,6 +40,7 @@ export class ApiService {
 
     setToken(token: string) {
         this.requestOptions.headers = this.requestOptions.headers.append('Authorization', 'JWT ' + token);
+        console.log(token);
     }
 
     private getApiUrl() {

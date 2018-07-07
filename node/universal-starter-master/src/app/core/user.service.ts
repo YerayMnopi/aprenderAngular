@@ -1,6 +1,6 @@
 import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser, isPlatformServer } from "@angular/common";
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 /* Services */
@@ -51,14 +51,31 @@ export class UserService {
       );
   }
 
+  verify(): Observable<boolean> {
+    if (this.user.token) {
+      return this.apiService.post(this.endPoint + 'verify/', {token: this.user.token})
+      .map(
+        (response: {token: string}) => !!(response && response.token)
+      );
+    } else {
+      return Observable.of(false);
+    }
+
+  }
+
+  private deleteToken() {
+    this.user.token = '';
+    window.localStorage.setItem('token', this.user.token);
+  }
 
   private getUserFromLocalStorage() {
     if (isPlatformBrowser(this.platformId)) {
         const username = window.localStorage.getItem('username');
         const token = window.localStorage.getItem('token');
 
-        if (username) {
+        if (username || token) {
             this.setUser(username, token);
+            console.log('user set to ' + this.user.username);
         }
     }
   }

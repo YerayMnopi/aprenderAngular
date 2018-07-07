@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate } from "@angular/router";
-import {Observable} from "rxjs";
+import {Observable} from "rxjs/Observable";
 
 /* Services */
 import { UserService } from './user.service';
@@ -16,8 +16,7 @@ export class PrivateGuard implements CanActivate {
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
-    ): boolean{
-        console.log(!!this.userService.getUser().token);
-        return !!this.userService.getUser().token;
+    ): Observable<boolean>{
+        return this.userService.verify();
     }
 }

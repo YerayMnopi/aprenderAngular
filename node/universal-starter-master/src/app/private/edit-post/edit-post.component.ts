@@ -15,6 +15,8 @@ import { PostsService } from '../../core/posts.service';
 export class EditPostComponent implements OnInit {
   post: Post;
 
+  editMode = false;
+
   constructor(
       private activatedRoute: ActivatedRoute,
       private postsService: PostsService
@@ -45,6 +47,10 @@ export class EditPostComponent implements OnInit {
       this.postsService.savePostExceptImage(this.post).subscribe(
           (response) => console.log(response)
       );
+  }
+
+  toggleEditMode() {
+      this.editMode = !this.editMode;
   }
 
   private getPost() {
