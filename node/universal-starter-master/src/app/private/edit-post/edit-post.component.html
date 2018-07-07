@@ -48,14 +48,20 @@
             <shared-image (click)="toggleEditMode(elementIndex, 'content')" [slug]="postElement.content[0]"></shared-image>
             <input *ngIf="checkEditMode(elementIndex, 'content')" type="text" [(ngModel)]="postElement.content[0]">
         </ng-container>
-        <button *ngIf="deleteMode" class="edit-post__button" (click)="deleteElement(elementIndex)">borrar este elemento</button>
+
+        <ng-container  *ngIf="deleteMode">
+            <hr>
+            <button class="edit-post__button" (click)="deleteElement(elementIndex)">borrar este elemento</button>
+            <button class="edit-post__button" (click)="addTextElement(elementIndex)">Añadir elemento de texto</button>
+            <button class="edit-post__button" (click)="addImageElement(elementIndex)">Añadir elemento de imagen</button>
+            <button class="edit-post__button" (click)="addCodeElement(elementIndex)">Añadir elemento de código</button>
+        </ng-container>
+
     </div>
     <section>
-        <button class="edit-post__button" (click)="addTextElement()">Añadir bloque de texto</button>
-        <button class="edit-post__button" (click)="addImageElement()">Añadir bloque de imagen</button>
-        <button class="edit-post__button" (click)="addCodeElement()">Añadir bloque de código</button>
-        <button *ngIf="!deleteMode" class="edit-post__button" (click)="activateDeleteMode()">Activar borrar elemento</button>
-        <button *ngIf="deleteMode" class="edit-post__button" (click)="deActivateDeleteMode()">Desactivar borrar elemento</button>
+        <button *ngIf="!deleteMode" class="edit-post__button" (click)="activateDeleteMode()">Activar editar elementos</button>
+        <button *ngIf="deleteMode" class="edit-post__button" (click)="deActivateDeleteMode()">Desactivar editar elementos</button>
         <button class="edit-post__button" (click)="savePost()">Guardar post</button>
+        <p class="edit-post__save-post-feedback">{{savePostFeedback}}</p>
     </section>
 </article>

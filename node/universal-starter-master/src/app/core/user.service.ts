@@ -55,7 +55,15 @@ export class UserService {
     if (this.user.token) {
       return this.apiService.post('token-verify/', {token: this.user.token})
       .map(
-        (response: {token: string}) => !!(response && response.token)
+        (response: {token: string}) => {
+          const token =  response && response.token;
+
+          if (token) {
+            this.setUser(this.user.username, response.token);
+          }
+
+          return !!(token);
+        }
       );
     } else {
       return Observable.of(false);
@@ -70,13 +78,12 @@ export class UserService {
 
   private getUserFromLocalStorage() {
     if (isPlatformBrowser(this.platformId)) {
-        const username = window.localStorage.getItem('username');
-        const token = window.localStorage.getItem('token');
+      const username = window.localStorage.getItem('username');
+      const token = window.localStorage.getItem('token');
 
-        if (username || token) {
-            this.setUser(username, token);
-            console.log('user set to ' + this.user.username);
-        }
+      if (username || token) {
+        this.setUser(username, token);
+      }
     }
   }
 

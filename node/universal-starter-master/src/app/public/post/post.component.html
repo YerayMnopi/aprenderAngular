@@ -19,7 +19,7 @@
             </p>
         </ng-container>
         <ng-container *ngIf="postElement.type === 'image'">
-            <shared-image [slug]="postElement.content"></shared-image>
+            <shared-image [slug]="postElement.content[0]"></shared-image>
         </ng-container>
     </div>
 </article>

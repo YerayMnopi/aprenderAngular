@@ -39,8 +39,11 @@ export class ApiService {
     }
 
     setToken(token: string) {
+        if (this.requestOptions.headers.has('Authorization')) {
+            this.requestOptions.headers = this.requestOptions.headers.delete('Authorization');
+        }
+
         this.requestOptions.headers = this.requestOptions.headers.append('Authorization', 'JWT ' + token);
-        console.log(token);
     }
 
     private getApiUrl() {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 /* Models */
 import { Post } from "../../shared/models/posts";
@@ -19,6 +20,8 @@ export class EditPostComponent implements OnInit {
 
   deleteMode = false;
 
+  savePostFeedback: string;
+
   constructor(
       private activatedRoute: ActivatedRoute,
       private postsService: PostsService
@@ -32,24 +35,24 @@ export class EditPostComponent implements OnInit {
     return index;
   }
 
-  addTextElement() {
-      this.post.body.body.push({
+  addTextElement(elementIndex: number) {
+      this.post.body.body.splice(elementIndex + 1, 0, {
           type: 'text',
           heading: 'Nuevo bloque de texto',
           content: ['Escribe aquí']
       });
   }
 
-  addImageElement() {
-    this.post.body.body.push({
+  addImageElement(elementIndex: number) {
+    this.post.body.body.splice(elementIndex + 1, 0, {
         type: 'image',
         heading: 'Nueva imagen',
         content: ['slug de la imagen']
     });
   }
 
-  addCodeElement() {
-      this.post.body.body.push({
+  addCodeElement(elementIndex: number) {
+      this.post.body.body.splice(elementIndex + 1, 0, {
           type: 'code',
           heading: 'Código',
           content: ['const index = 0;']
@@ -65,9 +68,21 @@ export class EditPostComponent implements OnInit {
   }
 
   savePost() {
-      this.postsService.savePostExceptImage(this.post).subscribe(
-          (response) => console.log(response)
-      );
+    this.savePostFeedback = '';
+    this.postsService.savePostExceptImage(this.post).subscribe(
+        (response: Post) => {
+            this.post = response;
+            let currentdate = new Date(); 
+            this.savePostFeedback = 'Post actualizado correctamente a ' + currentdate.getDate() + "/"
+            + (currentdate.getMonth()+1)  + "/" 
+            + currentdate.getFullYear() + " "  
+            + currentdate.getHours() + ":"  
+            + currentdate.getMinutes() + ":" 
+            + currentdate.getSeconds();
+        },
+        (error: HttpErrorResponse) => this.savePostFeedback = 'Algo ha salido mal al guardar el post (' + error.status + '). Prueba de nuevo por fa.'
+
+    );
   }
 
   toggleEditMode(elementIndex: number | string, subelement?: string,  paragraphIndex?: number) {
