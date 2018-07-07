@@ -18,10 +18,8 @@ export class ApiService {
     constructor(
         private httpClient: HttpClient,
         @Inject(PLATFORM_ID) private platformId: Object,
-        //@Inject('LOCALSTORAGE') private localStorage: any
     ){
         this.getApiUrl();
-        this.getTokenFromLocalStorage();
     }
 
     get(endpoint: string) {
@@ -42,10 +40,6 @@ export class ApiService {
 
     setToken(token: string) {
         this.requestOptions.headers = this.requestOptions.headers.append('Authorization', 'JWT ' + token);
-        
-        if (isPlatformBrowser(this.platformId)) {
-            window.localStorage.setItem('token', token);
-        }
     }
 
     private getApiUrl() {
@@ -56,13 +50,4 @@ export class ApiService {
         }
     }
 
-    private getTokenFromLocalStorage() {
-        if (isPlatformBrowser(this.platformId)) {
-            const token = window.localStorage.getItem('token');
-
-            if (token) {
-                this.setToken(token);
-            }
-        }
-    }
 }

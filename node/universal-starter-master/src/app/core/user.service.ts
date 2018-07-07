@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from "@angular/common";
 import { Observable } from 'rxjs/observable';
 import 'rxjs/add/operator/map';
 
@@ -17,8 +17,11 @@ export class UserService {
   private user = new User();
 
   constructor(
-    private apiService: ApiService
-  ) {}
+    private apiService: ApiService,
+    @Inject(PLATFORM_ID) private platformId: Object,
+  ) {
+    this.getUserFromLocalStorage();
+  }
 
   getUser() {
     return this.user;
@@ -41,10 +44,29 @@ export class UserService {
         (response: {token: string}) => {
           if (response.token) {
             this.setUser(username, response.token);
+            this.saveUser();
           }
           return !!response.token;
         }
       );
   }
 
+
+  private getUserFromLocalStorage() {
+    if (isPlatformBrowser(this.platformId)) {
+        const username = window.localStorage.getItem('username');
+        const token = window.localStorage.getItem('token');
+
+        if (username) {
+            this.setUser(username, token);
+        }
+    }
+  }
+
+  private saveUser() {
+    if (isPlatformBrowser(this.platformId)) {
+      window.localStorage.setItem('username', this.user.username);
+      window.localStorage.setItem('token', this.user.token);
+    }
+  }
 }

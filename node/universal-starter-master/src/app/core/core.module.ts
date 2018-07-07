@@ -8,6 +8,8 @@ import { UserService } from './user.service';
 
 import { PostResolver } from './post.resolve';
 
+import { PrivateGuard } from './private.guard';
+
 
 @NgModule({
   providers: [
@@ -16,6 +18,7 @@ import { PostResolver } from './post.resolve';
     PostsService,
     UserService,
     PostResolver,
+    PrivateGuard
   ]
 })
 export class CoreModule { }

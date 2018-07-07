@@ -24,7 +24,6 @@ import { PrivateModule } from "./private/private.module";
     AppRoutingModule,
     SharedModule,
     PrivateModule,
-    PublicModule
   ],
   bootstrap: [AppComponent]
 })
