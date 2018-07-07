@@ -11,5 +11,5 @@ export class Post {
 export class PostBodyElement {
     type: string;
     heading: string;
-    content: string[] | string;
+    content: string[];
 }

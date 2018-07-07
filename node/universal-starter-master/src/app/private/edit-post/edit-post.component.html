@@ -3,35 +3,59 @@
     [imageAuthor]="post.image.author"
     [heading]="post.title"
     [subheading]="post.description"
+    (click)="toggleEditMode('title')"
 >
 </shared-section>
+<section *ngIf="checkEditMode('title')">
+    <form>
+        <label for="title">Título</label>
+        <input name="title"  type="text" [(ngModel)]="post.title">
 
+        <label for="subtitle">Subtítulo</label>
+        <input name="subtitle"  type="text" [(ngModel)]="post.description">
+
+        <label for="slug">Imagen</label>
+        <input name="slug"  type="text" [(ngModel)]="post.image.slug">
+
+        <label for="image-author">Imagen</label>
+        <input name="image-author"  type="text" [(ngModel)]="post.image.author">
+    </form>
+</section>
 <article class="content">
     <div class="element" *ngFor="let postElement of post.body.body; index as elementIndex; trackBy: trackByFn" [ngClass]="postElement.type">
-        <ng-container *ngIf="postElement.type === 'text'">
-            <h2 (click)="toggleEditMode()" class="heading">{{postElement.heading}}</h2>
-            <input *ngIf="editMode" type="text" [(ngModel)]="postElement.heading">
+        <ng-container *ngIf="postElement.type !== 'image'">
+            <h2 (click)="toggleEditMode(elementIndex, 'heading')" class="heading">{{postElement.heading}}</h2>
+            <input *ngIf="checkEditMode(elementIndex, 'heading')" type="text" [(ngModel)]="postElement.heading">
 
             <ng-container *ngFor="let paragraph of postElement.content; index as paragraphIndex; trackBy: trackByFn">
-                <p (click)="toggleEditMode()" [innerHTML]="paragraph | parseMarkdown"></p>
-                <textarea *ngIf="editMode" class="edit-post__text-area"
-                    [(ngModel)]="post.body.body[elementIndex].content[paragraphIndex]">
-                </textarea>
+                <p (click)="toggleEditMode(elementIndex, 'content', paragraphIndex)" [innerHTML]="paragraph | parseMarkdown"></p>
+                
+                <ng-container *ngIf="checkEditMode(elementIndex, 'content', paragraphIndex)">
+                    <textarea 
+                        class="edit-post__text-area"
+                        (ngModelChange)="checkParagraph(elementIndex, paragraphIndex)"
+                        [(ngModel)]="post.body.body[elementIndex].content[paragraphIndex]"
+                        autofocus>
+                    </textarea>
+                    <button class="edit-post__button" (click)="addParagraph(elementIndex, paragraphIndex)">añadir párrafo</button>
+                    <button class="edit-post__button" (click)="deleteElement(elementIndex, paragraphIndex)">borrar</button>
+                </ng-container>
             </ng-container>
 
         </ng-container>
-        <ng-container *ngIf="postElement.type === 'code'">
-            <h2 class="heading">{{postElement.heading}}</h2>
-            <p *ngFor="let paragraph of postElement.content">
-                {{paragraph}}
-            </p>
-        </ng-container>
+
         <ng-container *ngIf="postElement.type === 'image'">
-            <shared-image [slug]="postElement.content"></shared-image>
+            <shared-image (click)="toggleEditMode(elementIndex, 'content')" [slug]="postElement.content[0]"></shared-image>
+            <input *ngIf="checkEditMode(elementIndex, 'content')" type="text" [(ngModel)]="postElement.content[0]">
         </ng-container>
+        <button *ngIf="deleteMode" class="edit-post__button" (click)="deleteElement(elementIndex)">borrar este elemento</button>
     </div>
     <section>
-        <button (click)="addTextElement()">Añadir bloque de texto</button>
-        <button (click)="savePost()">Guardar post</button>
+        <button class="edit-post__button" (click)="addTextElement()">Añadir bloque de texto</button>
+        <button class="edit-post__button" (click)="addImageElement()">Añadir bloque de imagen</button>
+        <button class="edit-post__button" (click)="addCodeElement()">Añadir bloque de código</button>
+        <button *ngIf="!deleteMode" class="edit-post__button" (click)="activateDeleteMode()">Activar borrar elemento</button>
+        <button *ngIf="deleteMode" class="edit-post__button" (click)="deActivateDeleteMode()">Desactivar borrar elemento</button>
+        <button class="edit-post__button" (click)="savePost()">Guardar post</button>
     </section>
 </article>
