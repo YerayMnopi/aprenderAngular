@@ -119,7 +119,7 @@ class Post(UpdateableMixin, SlugeableMixin):
     body = JSONField(default={"body": []})
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='draft')
     publish = models.DateTimeField(default=timezone.now)
-    #category = models.ForeignKey(Category, default=1, related_name='posts')
+    category = models.ForeignKey(Category, default=1, related_name='posts')
 
     class Meta:
         ordering = ('-publish',)

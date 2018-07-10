@@ -52,11 +52,11 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
 class PostPreviewSerializer(serializers.HyperlinkedModelSerializer):
 
     image = ThumbnailSerializer()
-    #category = CategorySerializer()
+    category = CategorySerializer()
 
     class Meta:
         model = Post
-        fields = ['id', 'title', 'description', 'slug', 'image']
+        fields = ['id', 'title', 'description', 'slug', 'image', 'category']
         lookup_field = 'slug'
         extra_kwargs = {
             'url': {'lookup_field': 'slug'}
