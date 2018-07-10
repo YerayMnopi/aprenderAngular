@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 /* Models */
-import { Post } from "../../shared/models/posts";
+import { Post, PostPreview } from "../../shared/models/posts";
 
 /* Services */
 import { PostsService } from '../../core/posts.service';
@@ -10,11 +10,13 @@ import { PostsService } from '../../core/posts.service';
 @Component({
     selector: 'post',
     templateUrl: './post.component.html',
-    styleUrls: ['./post.component.scss']
+    styleUrls: ['./post.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostComponent implements OnInit {
 
     post: Post;
+    relatedPost: PostPreview[];
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -23,6 +25,7 @@ export class PostComponent implements OnInit {
 
     ngOnInit() {
         this.getPost();
+        this.getRelatedPosts();
     }
 
     private getPost() {
@@ -31,6 +34,12 @@ export class PostComponent implements OnInit {
                 this.post = data.post;
                 this.postsService.setSeoTags(this.post);
             }
+        );
+    }
+
+    private getRelatedPosts() {
+        this.postsService.getRelatedPost(this.post.id).subscribe(
+            (relatedPost) => this.relatedPost = relatedPost
         );
     }
 }

@@ -14,7 +14,10 @@ export class UserService {
 
   private endPoint = 'auth/';
 
-  private user = new User();
+  private user: User = {
+    username: '',
+    token: ''
+  };
 
   constructor(
     private apiService: ApiService,

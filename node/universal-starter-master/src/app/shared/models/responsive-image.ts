@@ -1,4 +1,4 @@
-export class ResponsiveImage {
+export interface ResponsiveImage {
   url: string;
   created: string;
   updated: string;

@@ -2,8 +2,8 @@
     (click)="navigate()"
     [ngStyle]="{ 'background-image': 'url(' + image + ')' }">
         <div class="post-preview__text-container" >
-            <h4 class="post-preview__title">{{ title }}</h4>
-            <p class="post-preview__description">{{ description }}</p>
+            <h4 class="post-preview__title" [innerHTML]="title | parseMarkdown"></h4>
+            <p class="post-preview__description" [innerHTML]="description | parseMarkdown"></p>
         </div>
 </div>
 

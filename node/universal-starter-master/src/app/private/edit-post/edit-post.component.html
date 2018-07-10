@@ -24,16 +24,19 @@
 <article class="content">
     <div class="element" *ngFor="let postElement of post.body.body; index as elementIndex; trackBy: trackByFn" [ngClass]="postElement.type">
         <ng-container *ngIf="postElement.type !== 'image'">
-            <h2 (click)="toggleEditMode(elementIndex, 'heading')" class="heading">{{postElement.heading}}</h2>
-            <input *ngIf="checkEditMode(elementIndex, 'heading')" type="text" [(ngModel)]="postElement.heading">
+            <h2 (click)="toggleEditMode(elementIndex, 'heading')" class="heading" [innerHTML]="postElement.heading | parseMarkdown"></h2>
+            <input *ngIf="checkEditMode(elementIndex, 'heading')"
+                id="elementIndex + 'heading'"
+                type="text" 
+                [(ngModel)]="postElement.heading">
 
             <ng-container *ngFor="let paragraph of postElement.content; index as paragraphIndex; trackBy: trackByFn">
                 <p (click)="toggleEditMode(elementIndex, 'content', paragraphIndex)" [innerHTML]="paragraph | parseMarkdown"></p>
                 
                 <ng-container *ngIf="checkEditMode(elementIndex, 'content', paragraphIndex)">
                     <textarea 
+                        id="elementIndex + 'content' + paragraphIndex"
                         class="edit-post__text-area"
-                        (ngModelChange)="checkParagraph(elementIndex, paragraphIndex)"
                         [(ngModel)]="post.body.body[elementIndex].content[paragraphIndex]"
                         autofocus>
                     </textarea>
@@ -58,6 +61,11 @@
         </ng-container>
 
     </div>
+    <section *ngIf="post.body.body.length === 0">
+        <button class="edit-post__button" (click)="addTextElement(elementIndex)">Añadir elemento de texto</button>
+        <button class="edit-post__button" (click)="addImageElement(elementIndex)">Añadir elemento de imagen</button>
+        <button class="edit-post__button" (click)="addCodeElement(elementIndex)">Añadir elemento de código</button>
+    </section>
     <section>
         <button *ngIf="!deleteMode" class="edit-post__button" (click)="activateDeleteMode()">Activar editar elementos</button>
         <button *ngIf="deleteMode" class="edit-post__button" (click)="deActivateDeleteMode()">Desactivar editar elementos</button>

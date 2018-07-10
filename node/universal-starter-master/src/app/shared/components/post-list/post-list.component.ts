@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 // Models
-import { Post } from '../../models/posts';
+import { PostPreview } from '../../models/posts';
 
 @Component({
   selector: 'shared-post-list',
@@ -10,7 +10,7 @@ import { Post } from '../../models/posts';
 })
 export class PostListComponent {
 
-  @Input() posts: Post[];
+  @Input() posts: PostPreview[];
 
   @Input() urlPrefix = '/articulos';
 

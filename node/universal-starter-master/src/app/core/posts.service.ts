@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 
+/* Rxjs */
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+
 /* Services */
 import { ApiService } from './api.service';
 
 /* Models */
-import {Post} from "../shared/models/posts";
+import {Post, PostPreview} from "../shared/models/posts";
 
 @Injectable()
 export class PostsService {
 
     postEndpoint = 'posts/';
+
+    publishedPosts: PostPreview[];
 
     constructor(
         private apiService: ApiService,
@@ -18,8 +24,29 @@ export class PostsService {
         private metaService: Meta,
     ){}
 
-    getPosts() {
+    getPosts(): Observable<any> {
         return this.apiService.get(this.postEndpoint);
+    }
+
+    getPublishedPosts(): Observable<PostPreview[]> {
+        if (this.publishedPosts) {
+            return Observable.of(this.publishedPosts);
+        } else {
+            return this.apiService.get(this.postEndpoint + 'published/').map(
+                (publishedPosts: PostPreview[]) => { 
+                    this.publishedPosts = publishedPosts;
+                    return this.publishedPosts;
+                }
+            );
+        }
+    }
+
+    getRelatedPost(postId: Number): Observable<PostPreview[]> {
+        return this.getPublishedPosts().map(
+            (publishedPosts) => publishedPosts.filter(
+                (publishedPost) => publishedPost.id !== postId
+            )
+        );
     }
 
     getPost(slug: string) {

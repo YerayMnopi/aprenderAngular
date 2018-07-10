@@ -4,7 +4,7 @@ import { SharedModule } from '../shared/shared.module'
 import { PrivateRoutingModule } from './private-routing.module';
 
 // Components
-import { EditPostComponent } from './edit-post/edit-post.component';
+import { EditPostModule } from './edit-post/edit-post.module';
 import { AdminComponent } from './admin/admin.component';
 
 
@@ -12,11 +12,11 @@ import { AdminComponent } from './admin/admin.component';
   imports: [
     SharedModule,
     PrivateRoutingModule,
-    RouterModule
+    RouterModule,
+    EditPostModule
   ],
   declarations: [
-    AdminComponent,
-    EditPostComponent
+    AdminComponent
   ]
 })
 export class PrivateModule {}

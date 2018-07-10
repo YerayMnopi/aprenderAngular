@@ -1,19 +1,19 @@
-<shared-section
-    [backgroundImage]="post.image.slug"
-    [imageAuthor]="post.image.author"
-    [heading]="post.title"
-    [subheading]="post.description"
->
-</shared-section>
-<article class="content">
-    <div class="element" *ngFor="let postElement of post.body.body" [ngClass]="postElement.type">
+<article>
+    <shared-section
+        [backgroundImage]="post.image.slug"
+        [imageAuthor]="post.image.author"
+        [heading]="post.title"
+        [subheading]="post.description"
+    >
+    </shared-section>
+    <div class="content element" *ngFor="let postElement of post.body.body" [ngClass]="postElement.type">
         <ng-container *ngIf="postElement.type === 'text'">
-            <h2 class="heading">{{postElement.heading}}</h2>
+            <h2 *ngIf="postElement.heading" class="heading" [innerHTML]="postElement.heading | parseMarkdown"></h2>
             <p *ngFor="let paragraph of postElement.content" [innerHTML]="paragraph | parseMarkdown">
             </p>
         </ng-container>
         <ng-container *ngIf="postElement.type === 'code'">
-            <h2 class="heading">{{postElement.heading}}</h2>
+            <h2 *ngIf="postElement.heading" class="heading">{{postElement.heading}}</h2>
             <p *ngFor="let paragraph of postElement.content">
                 {{paragraph}}
             </p>
@@ -22,4 +22,5 @@
             <shared-image [slug]="postElement.content[0]"></shared-image>
         </ng-container>
     </div>
+    <shared-post-list [posts]="relatedPost"></shared-post-list>
 </article>

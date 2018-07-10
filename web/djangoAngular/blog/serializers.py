@@ -15,12 +15,36 @@ class ResponsiveImageSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
-
+    id = serializers.ReadOnlyField()
     image = ResponsiveImageSerializer()
 
     class Meta:
         model = Post
         fields = '__all__'
+        lookup_field = 'slug'
+        extra_kwargs = {
+            'url': {'lookup_field': 'slug'}
+        }
+
+
+class ThumbnailSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = ResponsiveImage
+        fields = ['thumbnail']
+        lookup_field = 'slug'
+        extra_kwargs = {
+            'url': {'lookup_field': 'slug'}
+        }
+
+
+class PostPreviewSerializer(serializers.HyperlinkedModelSerializer):
+
+    image = ThumbnailSerializer()
+
+    class Meta:
+        model = Post
+        fields = ['id', 'title', 'description', 'slug', 'image']
         lookup_field = 'slug'
         extra_kwargs = {
             'url': {'lookup_field': 'slug'}

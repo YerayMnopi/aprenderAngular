@@ -38,8 +38,8 @@ export class EditPostComponent implements OnInit {
   addTextElement(elementIndex: number) {
       this.post.body.body.splice(elementIndex + 1, 0, {
           type: 'text',
-          heading: 'Nuevo bloque de texto',
-          content: ['Escribe aquí']
+          heading: 'Nuevo heading',
+          content: ['Nuevo parrafo']
       });
   }
 
@@ -54,8 +54,8 @@ export class EditPostComponent implements OnInit {
   addCodeElement(elementIndex: number) {
       this.post.body.body.splice(elementIndex + 1, 0, {
           type: 'code',
-          heading: 'Código',
-          content: ['const index = 0;']
+          heading: 'Nuevo heading',
+          content: ['Nuevo parrafo']
       });
   }
 
@@ -98,20 +98,6 @@ export class EditPostComponent implements OnInit {
 
   checkEditMode(elementIndex: number | string, subelement?: string,  paragraphIndex?: number) {
     return this.editMode === (elementIndex + subelement + paragraphIndex);
-  }
-
-  checkParagraph(elementIndex: number, paragraphIndex: number) {
-    const splitParagraphCode = '\n\n';
-    let paragraph: string = this.post.body.body[elementIndex].content[paragraphIndex];
-
-    if (paragraph.indexOf(splitParagraphCode) > -1) {
-        let paragraphs: string[];
-        paragraphs = paragraph.split(splitParagraphCode);
-        
-        this.post.body.body[elementIndex].content.splice(paragraphIndex, 1, paragraphs[0], paragraphs[1]);
-
-        this.toggleEditMode(elementIndex, 'content', paragraphIndex + 1);
-    }
   }
 
   addParagraph(elementIndex: number, paragraphIndex: number) {
