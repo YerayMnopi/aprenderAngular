@@ -38,9 +38,21 @@ class ThumbnailSerializer(serializers.HyperlinkedModelSerializer):
         }
 
 
+class CategorySerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Category
+        fields = ['slug']
+        lookup_field = 'slug'
+        extra_kwargs = {
+            'url': {'lookup_field': 'slug'}
+        }
+
+
 class PostPreviewSerializer(serializers.HyperlinkedModelSerializer):
 
     image = ThumbnailSerializer()
+    #category = CategorySerializer()
 
     class Meta:
         model = Post

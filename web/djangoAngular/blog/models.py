@@ -100,6 +100,14 @@ class ResponsiveImage(UpdateableMixin, SlugeableMixin):
         return self.title
 
 
+class Category(SlugeableMixin):
+    description = models.CharField(max_length=250)
+    image = models.ForeignKey(ResponsiveImage, related_name='categories')
+
+    def __str__(self):
+        return self.title
+
+
 class Post(UpdateableMixin, SlugeableMixin):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
@@ -111,6 +119,7 @@ class Post(UpdateableMixin, SlugeableMixin):
     body = JSONField(default={"body": []})
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='draft')
     publish = models.DateTimeField(default=timezone.now)
+    #category = models.ForeignKey(Category, default=1, related_name='posts')
 
     class Meta:
         ordering = ('-publish',)
@@ -118,8 +127,3 @@ class Post(UpdateableMixin, SlugeableMixin):
     def __str__(self):
         return self.title
 
-    def save(self):
-        if not self.slug:
-            self.slug = self.get_unique_slug()
-
-        super(Post, self).save()

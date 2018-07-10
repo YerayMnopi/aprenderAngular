@@ -11,6 +11,7 @@ router = DefaultRouter()
 router.register(r'responsive-image', ResponsiveImageViewSet)
 router.register(r'posts', PostViewSet)
 router.register(r'users', UserViewSet)
+router.register(r'categories', CategoryViewSet)
 
 urlpatterns = [
     url(r'^api/admin/', admin.site.urls),

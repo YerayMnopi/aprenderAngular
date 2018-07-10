@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 /* Models */
@@ -10,8 +10,7 @@ import { PostsService } from '../../core/posts.service';
 @Component({
     selector: 'post',
     templateUrl: './post.component.html',
-    styleUrls: ['./post.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
 

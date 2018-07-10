@@ -23,5 +23,11 @@ class SlugeableMixin(models.Model):
             num += 1
         return unique_slug
 
+    def save(self):
+        if not self.slug:
+            self.slug = self.get_unique_slug()
+
+        super(SlugeableMixin, self).save()
+
     class Meta:
         abstract = True
