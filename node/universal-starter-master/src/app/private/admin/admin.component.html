@@ -1,2 +1,5 @@
-<h1>Administrador</h1>
+<h1 class="admin__heading">Admin</h1>
+<div class="admin__button-container">
+  <a class="admin__button" (click)="createBlankPost()">+</a>
+</div>
 <shared-post-list [posts]="posts" urlPrefix="/editar"></shared-post-list>

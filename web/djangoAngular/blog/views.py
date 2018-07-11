@@ -24,6 +24,25 @@ class PostViewSet(viewsets.ModelViewSet):
         serializer = PostPreviewSerializer(queryset, many=True)
         return Response(serializer.data)
 
+    @action(detail=False, methods=['POST'])
+    def blank(self, request):
+        image = ResponsiveImage.objects.get(slug='footer')
+        category = Category.objects.get(slug='angular')
+        author = User.objects.get(username='yeray')
+
+        blank_post = Post(
+            title='Nuevo Post',
+            description='Nueva descripcion post',
+            category=category,
+            image=image,
+            author_id=1,
+            status='draft'
+        )
+
+        blank_post.save()
+        serializer = PostSerializer(blank_post, many=False, context={'request': request})
+        return Response(serializer.data)
+
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()

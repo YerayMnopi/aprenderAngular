@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 /* Services */
 import { PostsService } from '../../core/posts.service';
@@ -14,7 +16,8 @@ import { Post } from "../../shared/models/posts";
 export class AdminComponent implements OnInit {
 
   constructor (
-    private postService: PostsService
+    private postService: PostsService,
+    private router: Router
   ) {}
 
   posts: Post[];
@@ -23,7 +26,13 @@ export class AdminComponent implements OnInit {
     this.getPost();
   }
 
-  getPost() {
+  createBlankPost() {
+    this.postService.createBlankPost().subscribe(
+      (newPost: Post) => this.router.navigate(['editar', newPost.slug])
+    );
+  }
+
+  private getPost() {
     this.postService.getPosts().subscribe(
       (posts: Post[]) => this.posts = posts,
       (error) => {

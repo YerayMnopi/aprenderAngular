@@ -53,6 +53,10 @@ export class PostsService {
         return this.apiService.get(this.postEndpoint + slug + '/');
     }
 
+    createBlankPost() {
+        return this.apiService.post(this.postEndpoint + 'blank/', {})
+    }
+
     savePostExceptImage(postToSave: Post) {
         const postWithoutImage = JSON.parse(JSON.stringify(postToSave));
         delete postWithoutImage.image;

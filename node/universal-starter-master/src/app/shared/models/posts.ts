@@ -14,6 +14,7 @@ export interface Post extends PostPreview {
     image: ResponsiveImage;
     category: Category;
     body: {body: PostBodyElement[]};
+    status: string;
 }
 
 export interface PostBodyElement {
