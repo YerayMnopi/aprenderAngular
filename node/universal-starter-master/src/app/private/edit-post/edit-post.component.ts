@@ -43,7 +43,7 @@ export class EditPostComponent implements OnInit {
         type: 'text',
         content: [this.NEW_ELEMENT_CODE]
     });
-    this.toggleEditMode(elementIndex, 'content', 0);
+    this.toggleEditMode(elementIndex + 1, 'content', 0);
   }
 
   addImageElement(elementIndex: number) {
@@ -51,7 +51,7 @@ export class EditPostComponent implements OnInit {
         type: 'image',
         content: [this.NEW_ELEMENT_CODE]
     });
-    this.toggleEditMode(elementIndex, 'content', 0);
+    this.toggleEditMode(elementIndex + 1, 'content', 0);
   }
 
   addCodeElement(elementIndex: number) {
@@ -59,7 +59,7 @@ export class EditPostComponent implements OnInit {
         type: 'code',
         content: [this.NEW_ELEMENT_CODE]
     });
-    this.toggleEditMode(elementIndex, 'content', 0);
+    this.toggleEditMode(elementIndex + 1, 'content', 0);
   }
 
   addHeadingToElement(elementIndex: number) {

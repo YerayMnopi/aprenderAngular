@@ -18,7 +18,7 @@ export class AutofocusDirective implements OnInit {
         this.elementRef.nativeElement.setSelectionRange(0, this.elementRef.nativeElement.value.length);
       }
     },
-      100
+      200
     );
   }
 }
