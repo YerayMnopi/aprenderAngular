@@ -12,13 +12,22 @@
         <input name="title"  type="text" [(ngModel)]="post.title">
 
         <label for="subtitle">Subtítulo</label>
-        <input name="subtitle"  type="text" [(ngModel)]="post.description">
+        <textarea class="edit-post__text-area" name="subtitle"  [(ngModel)]="post.description"></textarea>
 
         <label for="slug">Imagen</label>
         <input name="slug"  type="text" [(ngModel)]="post.image.slug">
 
-        <label for="image-author">Imagen</label>
+        <label for="image-author">Autor Imagen</label>
         <input name="image-author"  type="text" [(ngModel)]="post.image.author">
+
+        <label for="status">Status</label>
+        <select name="status"  [(ngModel)]="post.status">
+            <option value="published">Publicado</option>
+            <option value="draft">Borrador</option>
+        </select>
+
+        <label for="status">Category</label>
+        <input name="status" type="text" [(ngModel)]="post.category.slug">
     </form>
 </section>
 <article class="content">
@@ -40,8 +49,8 @@
                         [(ngModel)]="post.body.body[elementIndex].content[paragraphIndex]"
                         autofocus>
                     </textarea>
-                    <button class="edit-post__button" (click)="addParagraph(elementIndex, paragraphIndex)">añadir párrafo</button>
-                    <button class="edit-post__button" (click)="deleteElement(elementIndex, paragraphIndex)">borrar párrafo</button>
+                    <button class="edit-post__button" (click)="addParagraph(elementIndex, paragraphIndex)">+</button>
+                    <button class="edit-post__button" (click)="deleteElement(elementIndex, paragraphIndex)">-</button>
                 </ng-container>
             </ng-container>
 
@@ -54,17 +63,17 @@
 
         <ng-container  *ngIf="deleteMode">
             <hr>
-            <button class="edit-post__button" (click)="deleteElement(elementIndex)">borrar este elemento</button>
-            <button class="edit-post__button" (click)="addTextElement(elementIndex)">Añadir elemento de texto</button>
-            <button class="edit-post__button" (click)="addImageElement(elementIndex)">Añadir elemento de imagen</button>
-            <button class="edit-post__button" (click)="addCodeElement(elementIndex)">Añadir elemento de código</button>
+            <button class="edit-post__button" (click)="deleteElement(elementIndex)">borrar</button>
+            <button class="edit-post__button" (click)="addTextElement(elementIndex)">texto</button>
+            <button class="edit-post__button" (click)="addImageElement(elementIndex)">imagen</button>
+            <button class="edit-post__button" (click)="addCodeElement(elementIndex)">código</button>
         </ng-container>
 
     </div>
     <section *ngIf="post.body.body.length === 0">
-        <button class="edit-post__button" (click)="addTextElement(elementIndex)">Añadir elemento de texto</button>
-        <button class="edit-post__button" (click)="addImageElement(elementIndex)">Añadir elemento de imagen</button>
-        <button class="edit-post__button" (click)="addCodeElement(elementIndex)">Añadir elemento de código</button>
+        <button class="edit-post__button" (click)="addTextElement(elementIndex)">texto</button>
+        <button class="edit-post__button" (click)="addImageElement(elementIndex)">imagen</button>
+        <button class="edit-post__button" (click)="addCodeElement(elementIndex)">código</button>
     </section>
     <section>
         <button *ngIf="!deleteMode" class="edit-post__button" (click)="activateDeleteMode()">Activar editar elementos</button>
