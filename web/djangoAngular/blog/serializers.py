@@ -14,9 +14,22 @@ class ResponsiveImageSerializer(serializers.HyperlinkedModelSerializer):
         }
 
 
+class CategoryPreviewSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.ReadOnlyField()
+
+    class Meta:
+        model = Category
+        fields = ['id', 'slug']
+        lookup_field = 'slug'
+        extra_kwargs = {
+            'url': {'lookup_field': 'slug'}
+        }
+
+
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     id = serializers.ReadOnlyField()
     image = ResponsiveImageSerializer()
+    category = CategoryPreviewSerializer()
 
     class Meta:
         model = Post
@@ -38,21 +51,10 @@ class ThumbnailSerializer(serializers.HyperlinkedModelSerializer):
         }
 
 
-class CategorySerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
-        model = Category
-        fields = ['slug']
-        lookup_field = 'slug'
-        extra_kwargs = {
-            'url': {'lookup_field': 'slug'}
-        }
-
-
 class PostPreviewSerializer(serializers.HyperlinkedModelSerializer):
 
     image = ThumbnailSerializer()
-    category = CategorySerializer()
+    category = CategoryPreviewSerializer()
 
     class Meta:
         model = Post
@@ -68,3 +70,16 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+
+
+class CategoriesPostSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.ReadOnlyField()
+    image = ResponsiveImageSerializer()
+
+    class Meta:
+        model = Category
+        fields = '__all__'
+        lookup_field = 'slug'
+        extra_kwargs = {
+            'url': {'lookup_field': 'slug'}
+        }

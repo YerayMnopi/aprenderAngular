@@ -32,5 +32,5 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+    serializer_class = CategoriesPostSerializer
     lookup_field = 'slug'
