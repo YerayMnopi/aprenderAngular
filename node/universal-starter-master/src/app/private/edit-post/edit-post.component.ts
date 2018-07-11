@@ -94,7 +94,7 @@ export class EditPostComponent implements OnInit {
   }
 
   activateDeleteMode() {
-      this.deleteMode = true;
+    this.deleteMode = true;
   }
 
   deActivateDeleteMode() {
@@ -105,10 +105,7 @@ export class EditPostComponent implements OnInit {
     if (this.checkEditMode(elementIndex, subelement, paragraphIndex)) {
         this.editMode = '';
     } else {
-        setTimeout(
-            () => this.editMode = (elementIndex + subelement + paragraphIndex),
-            100
-        );
+        this.editMode = (elementIndex + subelement + paragraphIndex);
     }
   }
 

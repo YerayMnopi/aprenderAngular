@@ -33,6 +33,13 @@ export class SignUpComponent {
         }
     }
 
+    submitFormIfEnter(event: KeyboardEvent, loginForm: NgForm) {
+        if (event.keyCode === 13 || event.which === 13 || event.charCode === 13){
+            event.preventDefault();
+            this.authenticate(loginForm);
+        }
+    }
+
 
 
 }
