@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation, Inject, ViewChild, HostBinding, ElementRef, Renderer2, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
-import { isPlatformBrowser, isPlatformServer } from "@angular/common";
+import { Component, Input, Output, EventEmitter, ViewEncapsulation, Inject, ViewChild, HostBinding, ElementRef, Renderer2, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import { isPlatformServer } from "@angular/common";
 import { environment } from '../../../../environments/environment'
 
 @Component({
@@ -9,9 +9,11 @@ import { environment } from '../../../../environments/environment'
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SectionComponent implements OnInit{
+export class SectionComponent {
 
-  @Input() backgroundImage: string;
+  @Input() set backgroundImage(backgroundImage) {
+    this.setBackgroundImage(backgroundImage);
+  };
   @Input() imageAuthor: string;
   @Input() heading = '';
   sectionStyle = {};
@@ -19,7 +21,6 @@ export class SectionComponent implements OnInit{
   @Input() buttonText = '';
   @Input() external = true;
   @Output() buttonClicked = new EventEmitter<void>();
-  imageDirPath = '/assets/images/';
   @ViewChild('background') background: ElementRef;
 
   constructor(
@@ -27,15 +28,11 @@ export class SectionComponent implements OnInit{
     private renderer: Renderer2
   ) {}
 
-  ngOnInit() {
-    this.setBackgroundImage();
-  }
-
   emitButtonClicked() {
     this.buttonClicked.emit();
   }
 
-  setBackgroundImage() {
+  setBackgroundImage(backgroundImage) {
     const sufix = this.getBackgroundImageSufix();
     const type = '.jpg';
     const apiUrl = environment.apiUrl + 'media/images/';
@@ -43,7 +40,7 @@ export class SectionComponent implements OnInit{
     this.renderer.setStyle(
       this.background.nativeElement,
       'background-image',
-      'url(' + apiUrl + this.backgroundImage + sufix + type + ')'
+      'url(' + apiUrl + backgroundImage + sufix + type + ')'
     );
   }
 
@@ -60,10 +57,6 @@ export class SectionComponent implements OnInit{
     } else {
       return '-desktop';
     }
-  }
-
-  getImagePath() {
-    return this.external ? this.backgroundImage : this.imageDirPath + this.backgroundImage;
   }
 
 }

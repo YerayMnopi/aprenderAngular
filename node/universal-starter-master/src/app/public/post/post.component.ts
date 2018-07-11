@@ -24,7 +24,6 @@ export class PostComponent implements OnInit {
 
     ngOnInit() {
         this.getPost();
-        this.getRelatedPosts();
     }
 
     private getPost() {
@@ -32,6 +31,7 @@ export class PostComponent implements OnInit {
             (data) => {
                 this.post = data.post;
                 this.postsService.setSeoTags(this.post);
+                this.getRelatedPosts();
             }
         );
     }
