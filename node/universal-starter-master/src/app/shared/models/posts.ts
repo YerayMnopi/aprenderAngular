@@ -18,6 +18,6 @@ export interface Post extends PostPreview {
 
 export interface PostBodyElement {
     type: string;
-    heading: string;
+    heading?: string;
     content: string[];
 }

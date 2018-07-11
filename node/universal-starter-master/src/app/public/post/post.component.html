@@ -7,13 +7,12 @@
     >
     </shared-section>
     <div class="content element" *ngFor="let postElement of post.body.body" [ngClass]="postElement.type">
+        <h2 *ngIf="postElement.heading" class="heading" [innerHTML]="postElement.heading | parseMarkdown"></h2>
         <ng-container *ngIf="postElement.type === 'text'">
-            <h2 *ngIf="postElement.heading" class="heading" [innerHTML]="postElement.heading | parseMarkdown"></h2>
             <p *ngFor="let paragraph of postElement.content" [innerHTML]="paragraph | parseMarkdown">
             </p>
         </ng-container>
         <ng-container *ngIf="postElement.type === 'code'">
-            <h2 *ngIf="postElement.heading" class="heading">{{postElement.heading}}</h2>
             <p *ngFor="let paragraph of postElement.content">
                 {{paragraph}}
             </p>

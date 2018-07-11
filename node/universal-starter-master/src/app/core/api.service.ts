@@ -2,7 +2,7 @@ import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser, isPlatformServer } from "@angular/common";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/operators/retry';
-import { environment } from '../../environments/environment'
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ApiService {

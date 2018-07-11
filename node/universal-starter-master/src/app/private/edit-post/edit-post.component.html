@@ -31,39 +31,40 @@
     </form>
 </section>
 <article class="content">
-    <div class="element" *ngFor="let postElement of post.body.body; index as elementIndex; trackBy: trackByFn" [ngClass]="postElement.type">
+    <div #postBodyElement class="element" *ngFor="let postElement of post.body.body; index as elementIndex; trackBy: trackByFn" [ngClass]="postElement.type">
+        <h2 *ngIf="postElement.heading" (click)="toggleEditMode(elementIndex, 'heading')" class="heading" [innerHTML]="postElement.heading | parseMarkdown"></h2>
+        <input *ngIf="checkEditMode(elementIndex, 'heading')"
+            id="elementIndex + 'heading'"
+            type="text" 
+            [(ngModel)]="postElement.heading"
+            editPostAutofocus>
+        
         <ng-container *ngIf="postElement.type !== 'image'">
-            <h2 (click)="toggleEditMode(elementIndex, 'heading')" class="heading" [innerHTML]="postElement.heading | parseMarkdown"></h2>
-            <input *ngIf="checkEditMode(elementIndex, 'heading')"
-                id="elementIndex + 'heading'"
-                type="text" 
-                [(ngModel)]="postElement.heading">
-
             <ng-container *ngFor="let paragraph of postElement.content; index as paragraphIndex; trackBy: trackByFn">
                 <p (click)="toggleEditMode(elementIndex, 'content', paragraphIndex)" [innerHTML]="paragraph | parseMarkdown"></p>
                 
                 <ng-container *ngIf="checkEditMode(elementIndex, 'content', paragraphIndex)">
-                    <textarea 
-                        id="elementIndex + 'content' + paragraphIndex"
+                    <textarea id="elementIndex + 'content' + paragraphIndex"
                         class="edit-post__text-area"
+                        (keydown)="checkParagraph($event, elementIndex, paragraphIndex)"
                         [(ngModel)]="post.body.body[elementIndex].content[paragraphIndex]"
-                        autofocus>
+                        editPostAutofocus>
                     </textarea>
                     <button class="edit-post__button" (click)="addParagraph(elementIndex, paragraphIndex)">+</button>
                     <button class="edit-post__button" (click)="deleteElement(elementIndex, paragraphIndex)">-</button>
                 </ng-container>
             </ng-container>
-
         </ng-container>
 
         <ng-container *ngIf="postElement.type === 'image'">
             <shared-image (click)="toggleEditMode(elementIndex, 'content')" [slug]="postElement.content[0]"></shared-image>
-            <input *ngIf="checkEditMode(elementIndex, 'content')" type="text" [(ngModel)]="postElement.content[0]">
+            <input *ngIf="checkEditMode(elementIndex, 'content')" type="text" [(ngModel)]="postElement.content[0]" editPostAutofocus>
         </ng-container>
 
         <ng-container  *ngIf="deleteMode">
-            <hr>
+            <button class="edit-post__button" (click)="addHeadingToElement(elementIndex)">heading</button>
             <button class="edit-post__button" (click)="deleteElement(elementIndex)">borrar</button>
+            <hr>
             <button class="edit-post__button" (click)="addTextElement(elementIndex)">texto</button>
             <button class="edit-post__button" (click)="addImageElement(elementIndex)">imagen</button>
             <button class="edit-post__button" (click)="addCodeElement(elementIndex)">código</button>
@@ -71,6 +72,7 @@
 
     </div>
     <section *ngIf="post.body.body.length === 0">
+        <button class="edit-post__button" (click)="addHeadingToElement(elementIndex)">heading</button>
         <button class="edit-post__button" (click)="addTextElement(elementIndex)">texto</button>
         <button class="edit-post__button" (click)="addImageElement(elementIndex)">imagen</button>
         <button class="edit-post__button" (click)="addCodeElement(elementIndex)">código</button>

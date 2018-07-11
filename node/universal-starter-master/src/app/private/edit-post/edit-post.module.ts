@@ -4,13 +4,16 @@ import { SharedModule } from '../../shared/shared.module'
 // Components
 import { EditPostComponent } from './edit-post.component';
 
+// Directives
+import { AutofocusDirective } from './autofocus.directive';
 
 @NgModule({
   imports: [
     SharedModule,
   ],
   declarations: [
-    EditPostComponent
+    EditPostComponent,
+    AutofocusDirective
   ],
   exports: [
     EditPostComponent

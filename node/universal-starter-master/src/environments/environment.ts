@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:8000/api/',
-  serverSideApiUrl: 'http://www.aprenderangular.com/api/'
+  serverSideApiUrl: 'http://www.aprenderangular.com/api/',
+  newElementCode: 'nuevoElemento'
 };
