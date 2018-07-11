@@ -56,6 +56,7 @@ export class PostsService {
     savePostExceptImage(postToSave: Post) {
         const postWithoutImage = JSON.parse(JSON.stringify(postToSave));
         delete postWithoutImage.image;
+        delete postWithoutImage.category;
         return this.apiService.patch(this.postEndpoint + postToSave.slug + '/', postWithoutImage);
     }
 
