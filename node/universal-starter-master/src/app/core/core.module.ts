@@ -18,7 +18,12 @@ import { PrivateGuard } from './private.guard';
     PostsService,
     UserService,
     PostResolver,
-    PrivateGuard
+    PrivateGuard,
+    { provide: 'WINDOWREF', useFactory: getWindowRef },
   ]
 })
 export class CoreModule { }
+
+export function getWindowRef() {
+  return (typeof window !== "undefined") ? window : null;
+}

@@ -26,7 +26,6 @@ export class PostComponent implements OnInit {
 
     ngOnInit() {
         this.getPost();
-        this.analyticsService.sendPageView('articulos/' + this.post.slug);
     }
 
     private getPost() {
@@ -35,6 +34,7 @@ export class PostComponent implements OnInit {
                 this.post = data.post;
                 this.postsService.setSeoTags(this.post);
                 this.getRelatedPosts();
+                this.analyticsService.sendPageView('articulos/' + this.post.slug);
             }
         );
     }

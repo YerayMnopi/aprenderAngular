@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 /* Services */
 import { PostsService } from '../../core/posts.service';
@@ -17,8 +18,9 @@ export class HomeComponent implements OnInit {
   posts: Post[];
 
   constructor(
+    private analyticsService: AnalyticsService,
     private postService: PostsService,
-    private analyticsService: AnalyticsService
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -33,5 +35,9 @@ export class HomeComponent implements OnInit {
         throw (new Error(error.message));
       }
     );
+  }
+
+  goToFirstPost() {
+    this.router.navigate(['articulos', 'destruye-las-4-barreras-de-angular']);
   }
 }

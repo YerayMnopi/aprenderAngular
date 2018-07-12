@@ -1,5 +1,5 @@
 import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
-import { isPlatformBrowser, isPlatformServer } from "@angular/common";
+import { isPlatformBrowser } from "@angular/common";
 import { environment } from '../../environments/environment';
 
 
@@ -23,7 +23,6 @@ export class AnalyticsService {
   gtag(...params: any[]){
     if (this.dataLayer) {
       this.dataLayer.push(arguments);
-      console.log(arguments);
     }
   }
 

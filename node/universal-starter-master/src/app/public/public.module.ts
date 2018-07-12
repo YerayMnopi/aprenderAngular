@@ -22,13 +22,7 @@ import { AnalyticsService } from './analytics.service';
     SignUpComponent,
   ],
   providers: [
-    { provide: 'WINDOWREF', useFactory: getLocalStorage },
     AnalyticsService
   ]
 })
 export class PublicModule {}
-
-
-export function getLocalStorage() {
-  return (typeof window !== "undefined") ? window : null;
-}

@@ -19,9 +19,12 @@ export class UserService {
     token: ''
   };
 
+  private localStorageRef: any;
+
   constructor(
     private apiService: ApiService,
     @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject('WINDOWREF') private windowRef: any,
   ) {
     this.getUserFromLocalStorage();
   }
@@ -76,13 +79,16 @@ export class UserService {
 
   private deleteToken() {
     this.user.token = '';
-    window.localStorage.setItem('token', this.user.token);
+    if (isPlatformBrowser(this.platformId)) {
+      this.localStorageRef.setItem('token', this.user.token);
+    }
   }
 
   private getUserFromLocalStorage() {
     if (isPlatformBrowser(this.platformId)) {
-      const username = window.localStorage.getItem('username');
-      const token = window.localStorage.getItem('token');
+      this.localStorageRef = this.windowRef.localStorage;
+      const username = this.localStorageRef.getItem('username');
+      const token = this.localStorageRef.getItem('token');
 
       if (username || token) {
         this.setUser(username, token);
@@ -92,8 +98,8 @@ export class UserService {
 
   private saveUser() {
     if (isPlatformBrowser(this.platformId)) {
-      window.localStorage.setItem('username', this.user.username);
-      window.localStorage.setItem('token', this.user.token);
+      this.localStorageRef.setItem('username', this.user.username);
+      this.localStorageRef.setItem('token', this.user.token);
     }
   }
 }
