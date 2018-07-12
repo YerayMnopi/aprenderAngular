@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 /* Services */
 import { PostsService } from '../../core/posts.service';
+import { AnalyticsService } from '../analytics.service';
 
 /* Models */
 import { Post } from "../../shared/models/posts";
@@ -16,11 +17,13 @@ export class HomeComponent implements OnInit {
   posts: Post[];
 
   constructor(
-    private postService: PostsService
+    private postService: PostsService,
+    private analyticsService: AnalyticsService
   ) {}
 
   ngOnInit() {
     this.getPost();
+    this.analyticsService.sendPageView('');
   }
 
   getPost() {

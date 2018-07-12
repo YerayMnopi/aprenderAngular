@@ -8,6 +8,9 @@ import { HomeComponent } from './home/home.component';
 import { PostComponent } from './post/post.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
+// Services
+import { AnalyticsService } from './analytics.service';
+
 @NgModule({
   imports: [
     SharedModule,
@@ -16,7 +19,16 @@ import { SignUpComponent } from './sign-up/sign-up.component';
   declarations: [
     HomeComponent,
     PostComponent,
-    SignUpComponent
+    SignUpComponent,
+  ],
+  providers: [
+    { provide: 'WINDOWREF', useFactory: getLocalStorage },
+    AnalyticsService
   ]
 })
 export class PublicModule {}
+
+
+export function getLocalStorage() {
+  return (typeof window !== "undefined") ? window : null;
+}

@@ -6,6 +6,7 @@ import { Post, PostPreview } from "../../shared/models/posts";
 
 /* Services */
 import { PostsService } from '../../core/posts.service';
+import { AnalyticsService } from '../analytics.service';
 
 @Component({
     selector: 'post',
@@ -19,11 +20,13 @@ export class PostComponent implements OnInit {
 
     constructor(
         private activatedRoute: ActivatedRoute,
+        private analyticsService: AnalyticsService,
         private postsService: PostsService
     ) {}
 
     ngOnInit() {
         this.getPost();
+        this.analyticsService.sendPageView('articulos/' + this.post.slug);
     }
 
     private getPost() {
