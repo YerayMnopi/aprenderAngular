@@ -20,7 +20,7 @@ export class AnalyticsService {
     this.getDataLayer();
   }
 
-  gtag(params: any[]){
+  gtag(params: any){
     if (this.dataLayer) {
       this.dataLayer.push(params);
     }
@@ -29,11 +29,20 @@ export class AnalyticsService {
   getDataLayer() {
     if (isPlatformBrowser(this.platformId) && environment.production) {
       this.dataLayer = this.windowRef && this.windowRef.dataLayer;
-      this.gtag(['js', new Date()]);
+      this.gtag({
+        '0': 'js',
+        '1': new Date(),
+        'length': 2
+      });
     }
   }
 
   sendPageView(path: string) {
-    this.gtag(['config', 'UA-122237967-1', {'page_path': '/' + path }]);
+    this.gtag({
+      '0':'config',
+      '1': 'UA-122237967-1',
+      '2': {'page_path': '/' + path},
+      'length': 3
+    });
   }
 }
