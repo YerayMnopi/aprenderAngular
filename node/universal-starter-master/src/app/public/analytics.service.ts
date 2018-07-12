@@ -20,29 +20,17 @@ export class AnalyticsService {
     this.getDataLayer();
   }
 
-  gtag(params: any){
-    if (this.dataLayer) {
-      this.dataLayer.push(params);
-    }
-  }
 
   getDataLayer() {
     if (isPlatformBrowser(this.platformId) && environment.production) {
       this.dataLayer = this.windowRef && this.windowRef.dataLayer;
-      this.gtag({
-        '0': 'js',
-        '1': new Date(),
-        'length': 2
-      });
+      this.dataLayer.push('js', new Date());
     }
   }
 
   sendPageView(path: string) {
-    this.gtag({
-      '0':'config',
-      '1': 'UA-122237967-1',
-      '2': {'page_path': '/' + path},
-      'length': 3
-    });
+    if (this.dataLayer) {
+      this.dataLayer.push('config', 'UA-122237967-1', {'page_path': '/' + path });
+    }
   }
 }
