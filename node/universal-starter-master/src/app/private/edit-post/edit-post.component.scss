@@ -34,12 +34,12 @@
 }
 
 .code {
-  font-family: $logo-font;
+  font-family: 'menlo', $logo-font;
   font-weight: 400;
   font-size: 1rem;
   background-color: lightgrey;
   & p {
-    margin-bottom: .5rem;
+    margin-bottom: 1rem;
   }
 }
 
