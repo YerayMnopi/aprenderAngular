@@ -4,19 +4,18 @@
   display: block;
 }
 
-.content {
+.post__content {
   text-align: left;
-  width: 75%;
   max-width: 50rem;
-  margin: 4rem auto;
+  margin: 3rem auto;
+  padding: 2rem;
 }
 
-.element {
-  padding: 1rem;
-  margin-bottom: 3rem;
+.post__element {
+  margin-bottom: 5rem;
 }
 
-.heading {
+.post__heading {
   font-family: $primary-font;
   font-weight: 800;
   font-size: 3rem;
@@ -24,7 +23,7 @@
   color: $black;
 }
 
-.text {
+.post__text {
   font-family: $primary-font;
   font-weight: 200;
   font-size: 1.8rem;
@@ -33,12 +32,33 @@
   }
 }
 
-.code {
+.post__code {
   font-family: 'menlo', $logo-font;
   font-weight: 400;
   font-size: 1rem;
   background-color: lightgrey;
+  padding: 2rem;
   & p {
     margin-bottom: 1rem;
   }
+}
+
+.post__index {
+  border-left: 2px solid $black;
+  line-height: 0.8;
+  padding-left: 2.5rem;
+  margin-left: .25rem;
+  font-size: 1.2rem;
+}
+
+.post__index-heading {
+  font-family: $primary-font;
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: $black;
+}
+
+.post__index-item {
+  margin-bottom: 2rem;
 }

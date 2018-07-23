@@ -9,14 +9,14 @@ import 'rxjs/add/observable/of';
 import { ApiService } from './api.service';
 
 /* Models */
-import {Post, PostPreview} from "../shared/models/posts";
+import {Post, PostPreview, PostBodyElement} from "../shared/models/posts";
 
 @Injectable()
 export class PostsService {
 
-    postEndpoint = 'posts/';
+    private postEndpoint = 'posts/';
 
-    publishedPosts: PostPreview[];
+    private publishedPosts: PostPreview[];
 
     constructor(
         private apiService: ApiService,
@@ -104,13 +104,31 @@ export class PostsService {
         ];
         this.titleService.setTitle(post.title + ' | Aprender Angular');
 
-        for (let tag of tags) {
-            this.metaService.updateTag({
-                    content: tag.content
-                },
-                tag.type + "='" + tag.name +"'"
-            );
-        }
+        tags.forEach(
+            (tag) => {
+                this.metaService.updateTag(
+                    {content: tag.content},
+                    tag.type + "='" + tag.name +"'"
+                );
+            }
+        );
 
+    }
+
+    getHeadings(post: Post): {index: number, text: string}[] {
+        return post.body.body
+            .map(
+                (bodyElement: PostBodyElement, index: number) => {
+                    if (bodyElement.heading) {
+                        return {
+                            text: bodyElement.heading,
+                            index: index
+                        };
+                    }
+                }
+            )
+            .filter(
+                (heading) => !!heading
+            );
     }
 }

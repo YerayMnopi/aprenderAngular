@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation, Inject, ViewChild, HostBinding, ElementRef, Renderer2, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
 import { isPlatformServer } from "@angular/common";
-import { environment } from '../../../../environments/environment'
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'shared-section',

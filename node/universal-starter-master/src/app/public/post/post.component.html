@@ -6,20 +6,28 @@
         [subheading]="post.description"
     >
     </shared-section>
-    <div class="content element" *ngFor="let postElement of post.body.body" [ngClass]="postElement.type">
-        <h2 *ngIf="postElement.heading" class="heading" [innerHTML]="postElement.heading | parseMarkdown"></h2>
-        <ng-container *ngIf="postElement.type === 'text'">
-            <p *ngFor="let paragraph of postElement.content" [innerHTML]="paragraph | parseMarkdown">
-            </p>
-        </ng-container>
-        <ng-container *ngIf="postElement.type === 'code'">
-            <p *ngFor="let paragraph of postElement.content">
-                {{paragraph}}
-            </p>
-        </ng-container>
-        <ng-container *ngIf="postElement.type === 'image'">
-            <shared-image [slug]="postElement.content[0]"></shared-image>
-        </ng-container>
+
+    <div class="post__content">
+        <div class="post__element post__text">
+            <h3 class="post__index-heading">Contenido</h3>
+            <ol class="post__index">
+                <li *ngFor="let heading of headings" class="post__index-item">
+                    <a (click)="scrollToHeading(heading.index)">{{ heading.text }}</a>
+                </li>
+            </ol>
+        </div>
+        
+        <div class="post__element" *ngFor="let postElement of post.body.body; index as elementIndex" [ngClass]="'post__' + postElement.type">
+            <h2 [id]="'heading' + elementIndex" *ngIf="postElement.heading" class="post__heading" [innerHTML]="postElement.heading | parseMarkdown"></h2>
+            <ng-container *ngIf="postElement.type !== 'image'">
+                <p *ngFor="let paragraph of postElement.content" [innerHTML]="paragraph | parseMarkdown">
+                </p>
+            </ng-container>
+            <ng-container *ngIf="postElement.type === 'image'">
+                <shared-image [slug]="postElement.content[0]"></shared-image>
+            </ng-container>
+        </div>
     </div>
+    <div id="prueba"></div>
     <shared-post-list [posts]="relatedPost"></shared-post-list>
 </article>
