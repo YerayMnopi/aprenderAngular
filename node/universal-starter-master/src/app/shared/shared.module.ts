@@ -9,6 +9,7 @@ import { PostPreviewComponent } from './components/post-preview/post-preview.com
 import { SectionComponent } from './components/section/section.component';
 import { ImageComponent } from './components/image/image.component';
 import { PostListComponent } from './components/post-list/post-list.component';
+import { HighlightComponent } from './components/hightlight/highlight.component';
 
 
 /* Pipes */
@@ -26,6 +27,7 @@ import { ParseMarkdownPipe } from './pipes/parse-markdown.pipe';
     SectionComponent,
     ImageComponent,
     PostListComponent,
+    HighlightComponent,
     ParseMarkdownPipe
   ],
   exports: [
@@ -36,6 +38,7 @@ import { ParseMarkdownPipe } from './pipes/parse-markdown.pipe';
     SectionComponent,
     ImageComponent,
     PostListComponent,
+    HighlightComponent,
     ParseMarkdownPipe
   ]
 })

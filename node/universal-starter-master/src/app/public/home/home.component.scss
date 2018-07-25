@@ -1,31 +1,60 @@
 @import '../../../sass/_vars';
 
-.home__description-bullet--1 {
-  left: 25%;
+.home__why {
+  padding: 10rem 0;
 }
 
-.home__description-bullet--2 {
-  left: 50%;
+.home__why-heading {
+  color: $black;
+  font-family: $primary-font;
+  font-weight: 700;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 6rem;
 }
 
-.home__description-bullet--3 {
-  left: 75%;
+.home__why-highlight-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+  grid-column-gap: 2rem;
+  grid-row-gap: 8rem;
+}
+
+.home__topics-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  grid-row-gap: 2rem;
+  color: white;
+  top: 45%;
+  position: absolute;
+  width: 100%;
+
+  @include respond(phone) {
+    top: 42%;
+  }
+}
+
+.home-topic-list-item {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 33.33%;
 }
 
 .home__level-heading {
-  font-weight: 400;
+  font-family: $primary-font;
+  font-weight: 700;
+  font-size: 2.5rem;
 }
 
 .home__level-list {
-  list-style: none;
+  list-style: circle;
 }
 
 .home__level-item {
   font-weight: 400;
   font-size: 2rem;
   margin-left: 2rem;
-}
+  font-family: $primary-font;
 
-.home__post-container--right {
-  width: 50%;
 }

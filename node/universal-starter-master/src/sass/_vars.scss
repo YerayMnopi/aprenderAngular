@@ -10,6 +10,7 @@ $dark-grey: #6B6A6D;
 $dark-olive-green: #6C9C54;
 $dark-kaki: #AD815A;
 $black: #262525;
+$dark-blue: darkblue;
 
 @mixin respond($breakpoint){
   @if $breakpoint == small-phone {
