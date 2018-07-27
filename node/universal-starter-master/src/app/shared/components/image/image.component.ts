@@ -21,6 +21,8 @@ export class ImageComponent {
   ];
 
   @Input() slug: string;
+  @Input() caption = "";
+  @Input() alt = "";
     
   constructor() {}
 

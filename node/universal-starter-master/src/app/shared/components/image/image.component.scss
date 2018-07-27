@@ -1,3 +1,14 @@
+@import '../../../../sass/_vars';
+
 .image__img {
   width: 100%;
+}
+
+.image__caption {
+  font-family: $primary-font;
+  text-align: left;
+  margin: 0.5rem auto;
+  font-size: 1.1rem;
+  font-weight: 200;
+  width: 75%;
 }

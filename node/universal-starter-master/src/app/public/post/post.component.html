@@ -12,7 +12,7 @@
             <h3 class="post__index-heading">Contenido</h3>
             <ol class="post__index">
                 <li *ngFor="let heading of headings" class="post__index-item">
-                    <a (click)="scrollToHeading(heading.index)">{{ heading.text }}</a>
+                    <a (click)="scrollToHeading(heading.index)" [innerHTML]="heading.text | parseMarkdown"></a>
                 </li>
             </ol>
         </div>
@@ -24,7 +24,10 @@
                 </p>
             </ng-container>
             <ng-container *ngIf="postElement.type === 'image'">
-                <shared-image [slug]="postElement.content[0]"></shared-image>
+                <shared-image [slug]="postElement.content[0]"
+                    [alt]="postElement.content[1]"
+                    [caption]="postElement.content[2]">
+                </shared-image>
             </ng-container>
         </div>
     </div>
