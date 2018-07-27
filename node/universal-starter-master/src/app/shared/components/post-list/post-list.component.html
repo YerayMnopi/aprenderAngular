@@ -1,8 +1,6 @@
-<section class="posts-list__container">
-  <post-preview *ngFor="let post of posts; let index = index"
-      [url]="urlPrefix + '/' + post.slug"
-      [image]="post.image.thumbnail"
-      [title]="post.title"
-      [description]="post.description"
-  ></post-preview>
-</section>
+<post-preview *ngFor="let post of posts; let index = index"
+  [url]="urlPrefix + '/' + post.slug"
+  [image]="post.image.thumbnail"
+  [title]="post.title"
+  [description]="post.description"
+></post-preview>

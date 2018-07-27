@@ -31,6 +31,9 @@
             </ng-container>
         </div>
     </div>
-    <div id="prueba"></div>
-    <shared-post-list [posts]="relatedPost"></shared-post-list>
+    
+    <section class="post__related-post" *ngIf="relatedPost.length > 0">
+        <h2 class="post__related-post-heading">Más artículos sobre angular</h2>
+        <shared-post-list [posts]="relatedPost"></shared-post-list>
+    </section>
 </article>

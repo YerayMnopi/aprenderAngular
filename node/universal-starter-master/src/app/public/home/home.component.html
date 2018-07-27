@@ -23,37 +23,41 @@
 
     <shared-section
         backgroundImage="registro"
-        heading="Elige tu nivel"
     >
-        <div class="home__topics-list">
-            <div class="home-topic-list-item">
-                <h3 class="home__level-heading">Principiante</h3>
-                <ul class="home__level-list">
-                    <li class="home__level-item">Componentes</li>
-                    <li class="home__level-item">Directivas</li>
-                    <li class="home__level-item">Servicios</li>
-                </ul>
-            </div>
-            <div class="home-topic-list-item">
-                <h3 class="home__level-heading">Intermedio</h3>
-                <ul class="home__level-list">
-                    <li class="home__level-item">Observables</li>
-                    <li class="home__level-item">Módulos</li>
-                    <li class="home__level-item">Http</li>
-                </ul>
-            </div>
-            <div class="home-topic-list-item">
-                <h3 class="home__level-heading">Avanzado</h3>
-                <ul class="home__level-list">
-                    <li class="home__level-item">Universal</li>
-                    <li class="home__level-item">Testing</li>
-                    <li class="home__level-item">Deploy</li>
-                </ul>
+        <div class="home__topic-list-container">
+            <h3 class="home__topics-list-heading">Elige tu nivel</h3>
+            <div class="home__topics-list">
+                <div class="home-topic-list-item">
+                    <h3 class="home__level-heading">Principiante</h3>
+                    <ul class="home__level-list">
+                        <li class="home__level-item">Componentes</li>
+                        <li class="home__level-item">Directivas</li>
+                        <li class="home__level-item">Servicios</li>
+                    </ul>
+                </div>
+                <div class="home-topic-list-item">
+                    <h3 class="home__level-heading">Intermedio</h3>
+                    <ul class="home__level-list">
+                        <li class="home__level-item">Observables</li>
+                        <li class="home__level-item">Módulos</li>
+                        <li class="home__level-item">Http</li>
+                    </ul>
+                </div>
+                <div class="home-topic-list-item">
+                    <h3 class="home__level-heading">Avanzado</h3>
+                    <ul class="home__level-list">
+                        <li class="home__level-item">Universal</li>
+                        <li class="home__level-item">Testing</li>
+                        <li class="home__level-item">Deploy</li>
+                    </ul>
+                </div>
             </div>
         </div>
-
     </shared-section>
 
-    <shared-post-list [posts]="posts"></shared-post-list>
+    <section class="home__post-list">
+        <h2 class="home__why-heading">Últimos artículos sobre angular</h2>
+        <shared-post-list [posts]="posts"></shared-post-list>
+    </section>
 
 </article>
