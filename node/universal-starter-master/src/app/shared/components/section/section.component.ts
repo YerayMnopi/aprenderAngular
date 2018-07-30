@@ -64,6 +64,11 @@ export class SectionComponent implements OnInit {
       'clip-path',
       'polygon(' + polygon + ')'
     );
+    this.renderer.setStyle(
+      this.elementRef.nativeElement,
+      '-webkit-clip-path',
+      'polygon(' + polygon + ')'
+    );
   }
 
 
