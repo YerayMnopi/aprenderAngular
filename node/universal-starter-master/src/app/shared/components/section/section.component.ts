@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter, ViewEncapsulation, Inject, ViewChild, HostBinding, ElementRef, Renderer2, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
+import { OnInit, Component, Input, Output, EventEmitter,
+  Inject, ElementRef, Renderer2, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
 import { isPlatformServer } from "@angular/common";
 import { environment } from '../../../../environments/environment';
 
@@ -6,27 +7,30 @@ import { environment } from '../../../../environments/environment';
   selector: 'shared-section',
   templateUrl: './section.component.html',
   styleUrls: ['section.component.scss'],
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SectionComponent {
+export class SectionComponent implements OnInit {
 
   @Input() set backgroundImage(backgroundImage) {
     this.setBackgroundImage(backgroundImage);
   };
   @Input() imageAuthor: string;
   @Input() heading = '';
-  sectionStyle = {};
   @Input() subheading = '';
   @Input() buttonText = '';
-  @Input() external = true;
+  @Input() topClipPath = false;
+  @Input() bottomClipPath = true;
   @Output() buttonClicked = new EventEmitter<void>();
-  @ViewChild('background') background: ElementRef;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
-    private renderer: Renderer2
-  ) {}
+    private renderer: Renderer2,
+    private elementRef: ElementRef
+  ) { }
+
+  ngOnInit() {
+    this.setClipPath();
+  }
 
   emitButtonClicked() {
     this.buttonClicked.emit();
@@ -38,14 +42,32 @@ export class SectionComponent {
     const apiUrl = environment.apiUrl + 'media/images/';
 
     this.renderer.setStyle(
-      this.background.nativeElement,
+      this.elementRef.nativeElement,
       'background-image',
       'url(' + apiUrl + backgroundImage + sufix + type + ')'
     );
   }
 
+  setClipPath() {
+    let polygon;
 
-  getBackgroundImageSufix() {
+    if (!this.topClipPath && this.bottomClipPath) {
+      polygon = '0 0, 100% 0, 100% 95%, 0% 100%';
+    } else if (this.topClipPath && this.bottomClipPath) {
+      polygon = '0 5%, 100% 0, 100% 95%, 0% 100%';
+    } else if (this.topClipPath && !this.bottomClipPath){
+      polygon = '0 5%, 100% 0, 100% 100%, 0% 100%';
+    }
+
+    this.renderer.setStyle(
+      this.elementRef.nativeElement,
+      'clip-path',
+      'polygon(' + polygon + ')'
+    );
+  }
+
+
+  private getBackgroundImageSufix() {
     if (isPlatformServer(this.platformId)) {
       return '-desktop';
     }

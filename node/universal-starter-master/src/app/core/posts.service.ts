@@ -102,7 +102,7 @@ export class PostsService {
                 content: post.image.height.toString()
             },
         ];
-        this.titleService.setTitle(post.title + ' | Aprender Angular');
+        this.titleService.setTitle(post.title + ' | Curso de angular gratuito');
 
         tags.forEach(
             (tag) => {

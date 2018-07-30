@@ -16,13 +16,14 @@
             <shared-highlight *ngFor="let hightlight of highlights"
                 [iconName]="hightlight.iconName"
                 [heading]="hightlight.heading"
-                [text]="hightlight.text"        
+                [text]="hightlight.text"
             ></shared-highlight>
         </div>
     </section>
 
     <shared-section
         backgroundImage="registro"
+        [topClipPath]="true"
     >
         <div class="home__topic-list-container">
             <h3 class="home__topics-list-heading">Elige tu nivel</h3>

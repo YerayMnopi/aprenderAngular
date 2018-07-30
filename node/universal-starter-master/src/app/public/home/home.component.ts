@@ -9,7 +9,6 @@ import { AnalyticsService } from '../analytics.service';
 import { Post } from "../../shared/models/posts";
 import { Highlight } from "../../shared/models/highlight.interface";
 
-
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
