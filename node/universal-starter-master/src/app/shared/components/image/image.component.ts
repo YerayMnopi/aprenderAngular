@@ -5,7 +5,10 @@ import { environment } from '../../../../environments/environment'
   selector: 'shared-image',
   templateUrl: './image.component.html',
   styleUrls: ['./image.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    ['role']: 'figure'
+  }
 })
 export class ImageComponent {
 

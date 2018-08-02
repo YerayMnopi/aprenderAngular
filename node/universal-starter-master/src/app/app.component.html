@@ -1,15 +1,14 @@
 <header class="app__header">
     <logo class="app__logo" [color]="'inverse'"></logo>
 </header>
-<main>
+<main role="main">
     <router-outlet></router-outlet>
 </main>
 <footer class="app__footer">
     <shared-section
-            backgroundImage="footer"
-            imageAuthor="Jonatan Pie"
-            [topClipPath]="true"
-            [bottomClipPath]="false"
+        class="clipPathTop"
+        backgroundImage="footer"
+        imageAuthor="Jonatan Pie"
     >
         <logo class="app__logo"></logo>
         <a class="app__footer-link" [routerLink]="['/registro']">Registro</a>

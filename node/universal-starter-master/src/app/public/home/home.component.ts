@@ -12,7 +12,10 @@ import { Highlight } from "../../shared/models/highlight.interface";
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  host: {
+      ['role']: 'article'
+  }
 })
 export class HomeComponent implements OnInit {
 

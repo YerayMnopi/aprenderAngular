@@ -9,6 +9,15 @@
   background-position: center center;
   background-size: cover;
   text-align: center;
+  clip-path: polygon(0 0, 100% 0, 100% 95%, 0% 100%);
+}
+
+:host(.clipPathTopBottom) {
+  clip-path: polygon(0 5%, 100% 0, 100% 95%, 0% 100%);
+}
+
+:host(.clipPathTop) {
+  clip-path: polygon(0 5%, 100% 0, 100% 100%, 0% 100%);
 }
 
 .section__heading {

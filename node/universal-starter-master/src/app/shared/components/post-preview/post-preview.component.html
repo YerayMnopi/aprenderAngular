@@ -1,10 +1,2 @@
-<div class="post-preview__image-container"
-    (click)="navigate()"
-    [ngStyle]="{ 'background-image': 'url(' + image + ')' }">
-        <div class="post-preview__text-container" >
-            <h4 class="post-preview__title" [innerHTML]="title | parseMarkdown"></h4>
-            <p class="post-preview__description" [innerHTML]="description | parseMarkdown"></p>
-        </div>
-</div>
-
-
+<span class="post-preview__title post-preview__text" [innerHTML]="title | parseMarkdown"></span>
+<span class="post-preview__description post-preview__text" [innerHTML]="description | parseMarkdown"></span>

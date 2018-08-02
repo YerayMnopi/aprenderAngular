@@ -1,22 +1,18 @@
 @import '../../../../sass/_vars';
 
 :host {
-  position: relative;
-  display: block;
-}
-
-.post-preview__image-container {
-  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-direction: column;
   background-position: center center;
   background-size: cover;
   position: relative;
   height: 200px;
-  margin-bottom: -40px;
-  border-radius: 2px;
-
+  border-radius: 5px;
   cursor: pointer;
 
-  &:focus {
+  &:focus, &:active {
     outline: none;
   }
 
@@ -27,25 +23,14 @@
     }
   }
 }
-.post-preview__text-container {
-  background-color: white;
-  width: 75%;
-  border-top-right-radius: 2px;
-  transition: border 0.2s ease;
-  padding: .5rem;
-  position: absolute;
-  bottom: 0;
-  transition: all 0.3s ease-out;
-}
 
 .post-preview__title {
   font-family: $primary-font;
   font-weight: 800;
   font-size: 1.5rem;
   transition: color 0.2s ease;
-  margin-bottom: 2px;
-  color: $black;
   transition: all 0.3s ease-out;
+  border-top-right-radius: 5px;
 }
 
 .post-preview__description {
@@ -56,4 +41,11 @@
   @include respond(phone) {
     display: none;
   }
+}
+
+.post-preview__text {
+  color: $black;
+  background-color: white;
+  width: 75%;
+  padding: 0.25rem;
 }

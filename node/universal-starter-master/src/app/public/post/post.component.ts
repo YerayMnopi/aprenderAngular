@@ -11,7 +11,10 @@ import { AnalyticsService } from '../analytics.service';
 @Component({
     selector: 'post',
     templateUrl: './post.component.html',
-    styleUrls: ['./post.component.scss']
+    styleUrls: ['./post.component.scss'],
+    host: {
+        ['role']: 'article'
+    }
 })
 export class PostComponent implements OnInit {
 

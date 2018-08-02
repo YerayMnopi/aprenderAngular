@@ -1,11 +1,9 @@
-<figure>
-    <picture>
-      <source *ngFor="let source of sources"
-        [srcset]="apiUrl + slug + source.sufix + type"
-        [media]="'(max-width: ' + source.maxWidth + ')'">
-      <img [src]="apiUrl + slug + type"
-        class="image__img"
-        [alt]="alt">
-    </picture>
-    <figcaption class="image__caption" [innerHTML]="caption | parseMarkdown"></figcaption>
-</figure>
+<picture>
+  <source *ngFor="let source of sources"
+    [srcset]="apiUrl + slug + source.sufix + type"
+    [media]="'(max-width: ' + source.maxWidth + ')'">
+  <img [src]="apiUrl + slug + type"
+    class="image__img"
+    [alt]="alt">
+</picture>
+<figcaption class="image__caption" [innerHTML]="caption | parseMarkdown"></figcaption>

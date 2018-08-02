@@ -26,6 +26,17 @@ export class ParseMarkdownPipe implements PipeTransform {
 
   transform(paragraph: string): SafeHtml {
 
+    if (!paragraph) {
+      return '';
+    }
+
+    this.parseSymbols(paragraph);
+    this.parseCodes(paragraph);
+
+    return paragraph;
+  }
+
+  private parseSymbols(paragraph) {
     this.symbols.forEach(
       (symbol) => {
         let splittedParagraph = paragraph.split(symbol.markdown);
@@ -45,7 +56,9 @@ export class ParseMarkdownPipe implements PipeTransform {
         }
       }
     );
+  }
 
+  private parseCodes(paragraph) {
     this.codes.forEach(
       (symbol) => {
         let splittedParagraph = paragraph.split(symbol.markdown);
@@ -59,7 +72,5 @@ export class ParseMarkdownPipe implements PipeTransform {
         }
       }
     );
-
-    return paragraph;
   }
 }

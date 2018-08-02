@@ -9,7 +9,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Component({
     selector: 'sign-up',
     templateUrl: 'sign-up.component.html',
-    styleUrls: ['sign-up.component.scss']
+    styleUrls: ['sign-up.component.scss'],
+    host: {
+        ['role']: 'article'
+    }
 })
 export class SignUpComponent {
 

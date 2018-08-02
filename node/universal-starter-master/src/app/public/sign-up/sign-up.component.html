@@ -1,17 +1,9 @@
-<article>
-    <!--<shared-section
-         backgroundImage="registro"
-         heading="Registro"
-         buttonText="Registrarme"
-    >
-        <input type="text" class="home__heading-bullet" placeholder="miMail@gmail.com">
-    </shared-section>-->
-    <shared-section
-        backgroundImage="login"
-        heading="Login"
-        buttonText="Entrar"
-        (buttonClicked)="authenticate(loginForm)"
-    >
+<shared-section
+    backgroundImage="login"
+    heading="Login"
+    buttonText="Entrar"
+    (buttonClicked)="authenticate(loginForm)"
+>
     <form #loginForm="ngForm" (ngSubmit)="authenticate(loginForm)">
         <input name="username" required type="text" class="home__heading-bullet" placeholder="nombre de usuario" ngModel (keydown)="submitFormIfEnter($event, loginForm)">
         <input name="password" required type="password" class="home__heading-bullet home__heading-bullet--password" placeholder="password" ngModel (keydown)="submitFormIfEnter($event, loginForm)">
@@ -20,4 +12,3 @@
     </form>
 
 </shared-section>
-</article>
