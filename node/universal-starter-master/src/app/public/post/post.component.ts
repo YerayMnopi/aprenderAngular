@@ -13,7 +13,7 @@ import { AnalyticsService } from '../analytics.service';
     templateUrl: './post.component.html',
     styleUrls: ['./post.component.scss'],
     host: {
-        ['role']: 'article'
+        'role': 'article'
     }
 })
 export class PostComponent implements OnInit {

@@ -7,7 +7,7 @@ import { environment } from '../../../../environments/environment'
   styleUrls: ['./image.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    ['role']: 'figure'
+    'role': 'figure'
   }
 })
 export class ImageComponent {

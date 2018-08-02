@@ -7,7 +7,7 @@ import { environment } from '../../../../environments/environment';
     templateUrl: './post-preview.component.html',
     styleUrls: ['./post-preview.component.scss'],
     host: {
-      ['role']: 'link'
+      'role': 'link'
     }
 })
 export class PostPreviewComponent implements OnInit {

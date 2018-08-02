@@ -14,7 +14,7 @@ import { Highlight } from "../../shared/models/highlight.interface";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   host: {
-      ['role']: 'article'
+      'role': 'article'
   }
 })
 export class HomeComponent implements OnInit {

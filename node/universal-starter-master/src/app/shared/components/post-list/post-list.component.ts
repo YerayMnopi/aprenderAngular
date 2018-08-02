@@ -8,7 +8,7 @@ import { PostPreview } from '../../models/posts';
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.scss'],
   host: {
-    ['role']: 'navigation'
+    'role': 'navigation'
   }
 })
 export class PostListComponent {

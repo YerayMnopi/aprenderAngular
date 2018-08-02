@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
     templateUrl: 'sign-up.component.html',
     styleUrls: ['sign-up.component.scss'],
     host: {
-        ['role']: 'article'
+        'role': 'article'
     }
 })
 export class SignUpComponent {

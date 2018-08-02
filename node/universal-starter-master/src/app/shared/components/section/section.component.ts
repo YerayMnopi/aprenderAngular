@@ -9,7 +9,7 @@ import { environment } from '../../../../environments/environment';
   styleUrls: ['section.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    ['role']: 'section'
+    'role': 'section'
   }
 })
 export class SectionComponent implements OnInit {
