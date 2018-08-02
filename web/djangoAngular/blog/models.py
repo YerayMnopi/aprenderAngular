@@ -83,7 +83,13 @@ class ResponsiveImage(UpdateableMixin, SlugeableMixin):
 
     def resize(self, image, edge, dpi=72):
         content = io.BytesIO()
-        image.resize(self.scale(edge), Image.ANTIALIAS).save(fp=content, format='JPEG', dpi=[dpi, dpi])
+        image.resize(self.scale(edge), Image.ANTIALIAS).save(
+            fp=content,
+            format='JPEG',
+            dpi=[dpi, dpi],
+            optimize=True,
+            quality=85
+        )
         return ContentFile(content.getvalue())
 
     def scale(self, long_edge):
