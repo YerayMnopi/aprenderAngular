@@ -19,26 +19,34 @@
   font-family: $primary-font;
   font-weight: 800;
   font-size: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   color: $black;
+}
+
+.post__heading--text {
+  margin-top: 5rem;
 }
 
 .post__text {
   font-family: $primary-font;
   font-weight: 200;
   font-size: 1.8rem;
-  & p {
-    margin-bottom: 1.5rem;
-  }
+}
+
+.post__paragraph {
+  margin-bottom: 1.5rem;
 }
 
 .post__code {
-  font-family: 'menlo', $logo-font;
-  font-weight: 400;
-  font-size: 1rem;
   background-color: lightgrey;
   padding: 2rem;
-  & p {
+  margin: 2rem 0; 
+
+  & code {
+    font-family: 'menlo', $logo-font;
+    font-weight: 400;
+    font-size: 1rem;
+    display: block;
     margin-bottom: 1rem;
   }
 }

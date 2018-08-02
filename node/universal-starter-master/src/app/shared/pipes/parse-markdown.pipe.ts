@@ -6,6 +6,8 @@ import { SafeHtml } from '@angular/platform-browser';
 })
 export class ParseMarkdownPipe implements PipeTransform {
 
+  text: string;
+
   symbols = [
     {
       markdown: '_',
@@ -24,25 +26,27 @@ export class ParseMarkdownPipe implements PipeTransform {
     }
   ]
 
-  transform(paragraph: string): SafeHtml {
+  transform(text: string): SafeHtml {
 
-    if (!paragraph) {
+    if (!text) {
       return '';
     }
 
-    this.parseSymbols(paragraph);
-    this.parseCodes(paragraph);
+    this.text = text;
 
-    return paragraph;
+    this.parseSymbols();
+    this.parseCodes();
+
+    return this.text;
   }
 
-  private parseSymbols(paragraph) {
+  private parseSymbols() {
     this.symbols.forEach(
       (symbol) => {
-        let splittedParagraph = paragraph.split(symbol.markdown);
+        let splittedParagraph = this.text.split(symbol.markdown);
 
         if (splittedParagraph.length > 1) {
-          paragraph = splittedParagraph.reduce(
+          this.text = splittedParagraph.reduce(
             (previousText: string, currentText: string, currentIndex: number) => {
               let tag = '<';
   
@@ -58,13 +62,13 @@ export class ParseMarkdownPipe implements PipeTransform {
     );
   }
 
-  private parseCodes(paragraph) {
+  private parseCodes() {
     this.codes.forEach(
       (symbol) => {
-        let splittedParagraph = paragraph.split(symbol.markdown);
+        let splittedParagraph = this.text.split(symbol.markdown);
 
         if (splittedParagraph.length > 1) {
-          paragraph = splittedParagraph.reduce(
+          this.text = splittedParagraph.reduce(
             (previousText: string, currentText: string, currentIndex: number) => {  
               return previousText + currentText + symbol.html;
             }, ''

@@ -29,8 +29,6 @@
   width: 90%;
   position: absolute;
   text-shadow: 3px 3px black;
-  animation-name: appear;
-  animation-duration: 1s;
 }
 
 .section__subheading {
@@ -75,13 +73,4 @@
   position: absolute;
   left: 2rem;
   bottom: 2rem;
-}
-
-@keyframes appear {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }

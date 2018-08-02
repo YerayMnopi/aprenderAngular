@@ -8,25 +8,31 @@
 
 <div class="post__content" role="document">
     <h3 class="post__index-heading post__text">Contenido</h3>
-    <ol class="post__index post__text post__element">
+    <ol class="post__index post__text">
         <li *ngFor="let heading of headings" class="post__index-item">
             <a (click)="scrollToHeading(heading.index)" [innerHTML]="heading.text | parseMarkdown"></a>
         </li>
     </ol>
     
-    <div class="post__element" *ngFor="let postElement of post.body.body; index as elementIndex" [ngClass]="'post__' + postElement.type">
-        <h2 [id]="'heading' + elementIndex" *ngIf="postElement.heading" class="post__heading" [innerHTML]="postElement.heading | parseMarkdown"></h2>
-        <ng-container *ngIf="postElement.type !== 'image'">
-            <p *ngFor="let paragraph of postElement.content" [innerHTML]="paragraph | parseMarkdown">
-            </p>
+    <ng-container *ngFor="let postElement of post.body.body; index as elementIndex">
+        
+        <ng-container *ngIf="postElement.type === 'text'">
+            <h2 [id]="'heading' + elementIndex" *ngIf="postElement.heading" class="post__heading post__heading--text" [innerHTML]="postElement.heading | parseMarkdown"></h2>
+            <p class="post__text post__paragraph" *ngFor="let paragraph of postElement.content" [innerHTML]="paragraph | parseMarkdown"></p>
         </ng-container>
-        <ng-container *ngIf="postElement.type === 'image'">
-            <shared-image [slug]="postElement.content[0]"
-                [alt]="postElement.content[1]"
-                [caption]="postElement.content[2]">
-            </shared-image>
-        </ng-container>
-    </div>
+        
+        <div *ngIf="postElement.type === 'code'" class="post__code">
+            <h2 [id]="'heading' + elementIndex" *ngIf="postElement.heading" class="post__heading" [innerHTML]="postElement.heading | parseMarkdown"></h2>
+            <code *ngFor="let paragraph of postElement.content" [innerHTML]="paragraph | parseMarkdown"></code>
+        </div>
+        
+        <shared-image *ngIf="postElement.type === 'image'"
+            [slug]="postElement.content[0]"
+            [alt]="postElement.content[1]"
+            [caption]="postElement.content[2]">
+        </shared-image>
+
+    </ng-container>
 </div>
 
 <section class="post__related-post" *ngIf="relatedPost && relatedPost.length > 0">
