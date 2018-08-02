@@ -36,7 +36,7 @@ export class SectionComponent implements OnInit {
   @Input() set backgroundImage (backgroundImage) {
     const sufix = this.getBackgroundImageSufix();
     const type = '.jpg';
-    const apiUrl = environment.apiUrl + 'media/images/';
+    const apiUrl = environment.mediaUrl + 'media/images/';
 
     this.renderer.setStyle(
       this.elementRef.nativeElement,
