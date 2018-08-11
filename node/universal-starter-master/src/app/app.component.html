@@ -1,6 +1,4 @@
-<header class="app__header">
-    <logo class="app__logo" [color]="'inverse'"></logo>
-</header>
+<app-header></app-header>
 <main role="main">
     <router-outlet></router-outlet>
 </main>
@@ -10,7 +8,7 @@
         backgroundImage="footer"
         imageAuthor="Jonatan Pie"
     >
-        <logo class="app__logo"></logo>
+        <p>Hecho con angular 5</p>
         <a class="app__footer-link" [routerLink]="['/registro']">Registro</a>
     </shared-section>
 </footer>

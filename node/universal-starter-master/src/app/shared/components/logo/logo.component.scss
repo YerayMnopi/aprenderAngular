@@ -2,7 +2,23 @@
 
 
 :host {
-  padding: 5px 5px 0 5px ;
+  margin: 2rem;
+  display: block;
+  position: relative;
+  background-color: transparent;
+  border-radius: 2px;
+  cursor: pointer;
+  outline: none;
+  height: 3.5rem;
+  width: 3rem;
+}
+
+:host(.inverse) {
+  color: white;
+
+  & .logo__brackets {
+    color: $yellow;
+  }
 }
 
 .logo__author {
@@ -12,23 +28,6 @@
   position: absolute;
   white-space: nowrap;
   left: 4.9rem;
-}
-
-.logo__container {
-  margin: 5px;
-  position: relative;
-  background-color: transparent;
-  border-radius: 2px;
-  cursor: pointer;
-  outline: none;
-}
-
-.logo__container--inverse {
-  color: white;
-
-  & .logo__brackets {
-    color: $yellow;
-  }
 }
 
 .logo__A {

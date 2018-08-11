@@ -7,6 +7,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app.routing.module';
 
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header.component';
+
 import { SharedModule } from "./shared/shared.module";
 import { CoreModule } from "./core/core.module";
 import { PublicModule } from "./public/public.module";
@@ -15,7 +17,8 @@ import { PrivateModule } from "./private/private.module";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'my-app'}),
@@ -24,6 +27,7 @@ import { PrivateModule } from "./private/private.module";
     CoreModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    PublicModule,
     SharedModule,
     PrivateModule,
   ],

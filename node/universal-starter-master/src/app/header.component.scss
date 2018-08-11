@@ -1,0 +1,74 @@
+@import '../sass/_vars';
+
+:host {
+  width: 100%;
+  background-color: transparent;
+  position: fixed;
+  height: 89px;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease-out;
+}
+
+:host(.sticky) {
+  background-color: $black;
+}
+
+.header__right-elements {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__search {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+  margin: 0 1rem;
+}
+
+.header__search-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.header__search-icon {
+  width: 2rem;
+  height: 1rem;
+  fill: white;
+  padding: .5rem;
+}
+
+.header__search-input {
+  height: 1rem;
+  font-family: $primary-font;
+  border: none;
+  color: white;
+  padding: .5rem;
+  width: 80%;
+  transition: all .2s;
+  background-color: transparent;
+
+  &:focus {
+    outline: none;
+    width: 100%;
+  }
+}
+
+.header__nav {
+  color: white;
+  font-family: $primary-font;
+}
+
+.header__nav-item {
+  margin: 0 1rem;
+}

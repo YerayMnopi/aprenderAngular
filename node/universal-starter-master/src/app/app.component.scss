@@ -1,21 +1,5 @@
 @import '../sass/_vars';
 
-.app__header {
-  width: 100%;
-  background-color: transparent;
-  position: absolute;
-  height: 89px;
-  z-index: 1;
-}
-
-.app__logo {
-  padding: 2rem;
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 2rem;
-}
-
 .app__footer-link {
   text-align: right;
   font-family: $primary-font;
