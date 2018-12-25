@@ -2,6 +2,7 @@ import { OnInit, Component, Input, Output, EventEmitter,
   Inject, ElementRef, Renderer2, PLATFORM_ID, ChangeDetectionStrategy } from '@angular/core';
 import { isPlatformServer } from "@angular/common";
 import { environment } from '../../../../environments/environment';
+import { BrowserWindowService } from '../../../core/browser-window.service';
 
 @Component({
   selector: 'shared-section',
@@ -23,7 +24,8 @@ export class SectionComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object,
     @Inject('WINDOWREF') private windowRef: any,
     private renderer: Renderer2,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private browserWindowService: BrowserWindowService
   ) { }
 
   ngOnInit() {
@@ -49,6 +51,7 @@ export class SectionComponent implements OnInit {
     if (isPlatformServer(this.platformId)) {
       return '-desktop';
     }
+
 
     const witdh = this.windowRef.innerWidth;
 

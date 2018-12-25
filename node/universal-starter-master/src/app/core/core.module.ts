@@ -9,6 +9,7 @@ import { UserService } from './user.service';
 import { PostResolver } from './post.resolve';
 
 import { PrivateGuard } from './private.guard';
+import { BrowserWindowService } from './browser-window.service';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { PrivateGuard } from './private.guard';
     PostResolver,
     PrivateGuard,
     { provide: 'WINDOWREF', useFactory: getWindowRef },
+    BrowserWindowService
   ]
 })
 export class CoreModule { }

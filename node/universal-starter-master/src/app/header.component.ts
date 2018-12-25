@@ -1,8 +1,7 @@
 import { Component, OnInit, ElementRef, Renderer2, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformBrowser, isPlatformServer } from "@angular/common";
-
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/throttleTime';
+import { fromEvent } from 'rxjs';
+import { auditTime, map, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -23,13 +22,13 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    Observable.fromEvent(this.windowRef, 'scroll')
-    .auditTime(10)
-    .map(
-      () => (this.windowRef.pageYOffset || this.windowRef.scrollY) > 100
-    )
-    .distinctUntilChanged()
-    .subscribe(
+    fromEvent(this.windowRef, 'scroll').pipe(
+      auditTime(10),
+      map(
+        () => (this.windowRef.pageYOffset || this.windowRef.scrollY) > 100
+      ),
+      distinctUntilChanged()
+    ).subscribe(
       (sticky) => {
         if (sticky) {
           this.renderer.addClass(this.elementRef.nativeElement, 'sticky');
