@@ -11,6 +11,7 @@
 html {
   // this defines what 1rem is
   font-size: 62.5%;
+  background-color: $white;
 
   @include respond(desktop){
     font-size: 85%; //1rem = 9px, 9/16= 50px

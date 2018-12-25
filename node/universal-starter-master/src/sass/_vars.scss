@@ -10,8 +10,8 @@ $dark-grey: #6B6A6D;
 $dark-olive-green: #6C9C54;
 $dark-kaki: #AD815A;
 $black: #262525;
-$dark-blue: darkblue;
-
+$dark-blue: #475593;
+$white: #f4f7f1;
 @mixin respond($breakpoint){
   @if $breakpoint == small-phone {
     @media (max-width: 21.875em) { @content };

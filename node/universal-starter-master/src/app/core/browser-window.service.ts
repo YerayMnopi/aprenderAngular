@@ -1,5 +1,5 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { Observable, fromEvent } from 'rxjs';
+import { Observable, fromEvent, empty } from 'rxjs';
 import { debounceTime, startWith, map, distinctUntilChanged } from 'rxjs/operators';
 
 
@@ -22,12 +22,12 @@ export class BrowserWindowService {
   /**
    * Observable que ejecuta y emite el valor de checkIsMobile
    */
-  private viewportWidthChanges: Observable<string>;
+  viewportWidthChanges: Observable<string>;
 
   /**
    * Observable que ejecuta y emite el valor de checkIsMobile
    */
-  private viewportOrientationChanges: Observable<string>;
+  viewportOrientationChanges: Observable<string>;
 
   constructor(
     @Inject('WINDOWREF') private _windowRef: any,
@@ -43,13 +43,21 @@ export class BrowserWindowService {
    * Devuelve el objeto window
    */
   get() {
-    return this._windowRef && this._windowRef.nativeWindow;
+    return this._windowRef;
+  }
+
+  getViewportWidthChanges() {
+    return this.viewportWidthChanges || empty();
+  }
+
+  getViewportOrientationChanges() {
+    return this.viewportOrientationChanges || empty();
   }
 
   /**
    * Comprueba si el ancho de la pantalla es inferior al breakpoint para mobile
    */
-  getViewportOrientation(): string {
+  private getViewportOrientation(): string {
     const viewportWidth = this.get().innerWidth;
 
     if (this.get().innerHeight >= this.get().innerWidth) {
@@ -62,7 +70,7 @@ export class BrowserWindowService {
   /**
    * Comprueba si el ancho de la pantalla es inferior al breakpoint para mobile
    */
-  getViewportSize(): string {
+  private getViewportSize(): string {
     const viewportWidth = this.get().innerWidth;
 
     if (viewportWidth <= this.mobileBreakPointPx) {

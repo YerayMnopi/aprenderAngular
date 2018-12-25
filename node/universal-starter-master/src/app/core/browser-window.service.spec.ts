@@ -19,31 +19,28 @@ describe('BrowserWindow.ServiceService', () => {
 
 
   it('should detect orientation', inject([BrowserWindowService], (service: BrowserWindowService) => {
-    expect(service.getViewportOrientation()).toBe('landscape');
+    expect(service['getViewportOrientation']()).toBe('landscape');
     service['_windowRef'].nativeWindow.innerWidth = 300;
-    expect(service.getViewportOrientation()).toBe('portrait');
+    expect(service['getViewportOrientation']()).toBe('portrait');
     service['_windowRef'].nativeWindow.innerWidth = 440;
-    expect(service.getViewportOrientation()).toBe('portrait');
+    expect(service['getViewportOrientation']()).toBe('portrait');
 
 
   }));
 
-
   it('should detect viewport size', inject([BrowserWindowService], (service: BrowserWindowService) => {
-    expect(service.getViewportSize()).toBe('phone');
+    expect(service['getViewportSize']()).toBe('phone');
     service['_windowRef'].nativeWindow.innerWidth = 800;
-    expect(service.getViewportSize()).toBe('tablet');
+    expect(service['getViewportSize']()).toBe('tablet');
     service['_windowRef'].nativeWindow.innerWidth = 1400;
-    expect(service.getViewportSize()).toBe('desktop');
+    expect(service['getViewportSize']()).toBe('desktop');
   }));
 });
 
 
 export function getWindowRef() {
   return { 
-    nativeWindow: {
-      innerHeight: 440,
-      innerWidth: 600
-    }
+    innerHeight: 440,
+    innerWidth: 600
   };
 }
