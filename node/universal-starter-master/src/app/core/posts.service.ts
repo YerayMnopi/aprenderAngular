@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 
 /* Rxjs */
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 /* Services */
 import { ApiService } from './api.service';
@@ -30,23 +30,23 @@ export class PostsService {
 
     getPublishedPosts(): Observable<PostPreview[]> {
         if (this.publishedPosts) {
-            return Observable.of(this.publishedPosts);
+            return of(this.publishedPosts);
         } else {
-            return this.apiService.get(this.postEndpoint + 'published/').map(
+            return this.apiService.get(this.postEndpoint + 'published/').pipe(map(
                 (publishedPosts: PostPreview[]) => { 
                     this.publishedPosts = publishedPosts;
                     return this.publishedPosts;
                 }
-            );
+            ));
         }
     }
 
     getRelatedPost(postId: Number): Observable<PostPreview[]> {
-        return this.getPublishedPosts().map(
+        return this.getPublishedPosts().pipe(map(
             (publishedPosts) => publishedPosts.filter(
                 (publishedPost) => publishedPost.id !== postId
             )
-        );
+        ));
     }
 
     getPost(slug: string) {

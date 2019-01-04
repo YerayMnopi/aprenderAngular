@@ -1,7 +1,7 @@
 import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
-import { isPlatformBrowser, isPlatformServer } from "@angular/common";
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { isPlatformBrowser } from "@angular/common";
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 /* Services */
 import { ApiService } from './api.service';
@@ -46,7 +46,7 @@ export class UserService {
     };
 
     return this.apiService.post(this.endPoint, credentials)
-      .map(
+      .pipe(map(
         (response: {token: string}) => {
           if (response.token) {
             this.setUser(username, response.token);
@@ -54,13 +54,13 @@ export class UserService {
           }
           return !!response.token;
         }
-      );
+      ));
   }
 
   verify(): Observable<boolean> {
     if (this.user.token) {
       return this.apiService.post('token-verify/', {token: this.user.token})
-      .map(
+      .pipe(map(
         (response: {token: string}) => {
           const token =  response && response.token;
 
@@ -70,9 +70,9 @@ export class UserService {
 
           return !!(token);
         }
-      );
+      ));
     } else {
-      return Observable.of(false);
+      return of(false);
     }
 
   }
